@@ -1,0 +1,712 @@
+{
+  "Navbar": {
+    "links": {
+      "features": "المميزات",
+      "courses": "الدورات",
+      "audience": "لمن هذا؟",
+      "pricing": "الأسعار"
+    },
+    "badges": {
+      "new": "جديد"
+    },
+    "dashboard": "لوحة التحكم",
+    "profile": "الملف الشخصي",
+    "login": "تسجيل الدخول",
+    "getStarted": "ابدأ الآن",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج"
+  },
+  "auth": {
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "brand": "منصة التعلم",
+    "side": {
+      "tagline": "بوابة الطالب",
+      "headline1": "تعلّم بلا",
+      "headline2": "حدود.",
+      "body": "رحلتك التعليمية الشخصية تبدأ هنا. تابع من حيث توقفت في أي وقت.",
+      "features": {
+        "courses": {
+          "title": "مكتبة دورات غنية",
+          "desc": "الوصول إلى مئات الدروس المنظمة عبر الوحدات."
+        },
+        "progress": {
+          "title": "تابع تقدمك",
+          "desc": "تسلق لوحة المتصدرين مع اكتمال الدورات."
+        },
+        "community": {
+          "title": "تعلم معاً",
+          "desc": "انضم إلى مجتمع من الطلاب المتحمسين."
+        }
+      }
+    },
+    "login": {
+      "title": "تسجيل الدخول",
+      "subtitle": "مرحباً بعودتك — أدخل بياناتك أدناه.",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "example@domain.com",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "••••••••",
+      "forgot": "نسيت كلمة المرور؟",
+      "submit": "دخول",
+      "submitting": "جارٍ الدخول…",
+      "google": "المتابعة مع Google",
+      "or": "أو",
+      "noAccount": "ليس لديك حساب؟",
+      "signUp": "أنشئ حساباً",
+      "successToast": "مرحباً بعودتك!",
+      "errorToast": "بريد إلكتروني أو كلمة مرور غير صحيحة."
+    },
+    "register": {
+      "title": "إنشاء حساب",
+      "subtitle": "انضم إلى آلاف المتعلمين اليوم — مجاناً.",
+      "name": "الاسم الكامل",
+      "namePlaceholder": "أحمد محمد",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "example@domain.com",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "6 أحرف على الأقل",
+      "roleLabel": "أنا…",
+      "roleStudent": "طالب",
+      "roleStudentDesc": "أريد التعلم وحضور الدورات.",
+      "roleTeacher": "مدرس",
+      "roleTeacherDesc": "أريد إنشاء الدورات والتدريس.",
+      "submit": "إنشاء الحساب",
+      "submitting": "جارٍ الإنشاء…",
+      "google": "المتابعة مع Google",
+      "or": "أو",
+      "hasAccount": "لديك حساب بالفعل؟",
+      "signIn": "سجّل دخولك",
+      "successToast": "تم إنشاء الحساب! جارٍ تسجيل الدخول…",
+      "errorToast": "فشل التسجيل.",
+      "networkError": "خطأ في الشبكة. حاول مرة أخرى."
+    },
+    "forgot": {
+      "title": "نسيت كلمة المرور؟",
+      "subtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين.",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "example@domain.com",
+      "submit": "إرسال رابط الإعادة",
+      "submitting": "جارٍ الإرسال…",
+      "backToLogin": "العودة إلى تسجيل الدخول",
+      "successTitle": "تحقق من بريدك",
+      "successBody": "إذا كان الحساب موجوداً لـ {email}، ستصلك رسالة الإعادة قريباً.",
+      "successToast": "تم إرسال رابط الإعادة!"
+    },
+    "validation": {
+      "nameRequired": "الاسم الكامل مطلوب.",
+      "nameMin": "يجب أن يكون الاسم حرفين على الأقل.",
+      "emailRequired": "البريد الإلكتروني مطلوب.",
+      "emailInvalid": "أدخل عنوان بريد إلكتروني صحيح.",
+      "passwordRequired": "كلمة المرور مطلوبة.",
+      "passwordMin": "يجب أن تكون كلمة المرور 6 أحرف على الأقل."
+    },
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور"
+  },
+  "errors": {
+    "userNotFound": "المستخدم غير موجود",
+    "unauthorized": "عملية غير مصرح بها",
+    "somethingWentWrong": "حدث خطأ ما"
+  },
+  "Home": {
+    "badge": "ابتكار ذكاء اصطناعي عربي",
+    "heroTitle1": "تعلّم البرمجة",
+    "heroTitle2": "بطريقتك",
+    "heroDesc": "نُمكّن المتعلمين من جميع القدرات من خلال الذكاء الاصطناعي والتصميم الشامل. مستقبل البرمجة أصبح متاحًا للجميع.",
+    "startLearning": "ابدأ التعلم مجانًا",
+    "exploreCourses": "استكشف الدورات",
+    "startTeaching": "ابداء التدريس",
+    "stats": {
+      "courses": "دورات",
+      "groups": "مجموعات",
+      "inclusive": "شامل"
+    },
+    "audienceTitle": "التعليم للجميع",
+    "audienceDesc": "بيئات تعليمية مخصصة لكل الاحتياجات.",
+    "audiences": {
+      "allAges": {
+        "label": "جميع الأعمار",
+        "desc": "مسارات تعليمية تناسب كل مرحلة عمرية."
+      },
+      "visual": {
+        "label": "ضعاف البصر",
+        "desc": "دعم كامل لقارئ الشاشة وواجهة صوتية."
+      },
+      "autism": {
+        "label": "طيف التوحد",
+        "desc": "بيئة بسيطة منخفضة التحفيز."
+      },
+      "learning": {
+        "label": "صعوبات التعلم",
+        "desc": "خطوط مناسبة لعسر القراءة وتعليم تدريجي."
+      }
+    },
+    "featuresTitle": "مستقبل",
+    "featuresHighlight": "تقنيات التعلم",
+    "features": {
+      "adaptive": {
+        "title": "محرك التعلم التكيفي",
+        "desc": "يقوم النظام بضبط مستوى الصعوبة تلقائيًا حسب تقدمك."
+      },
+      "whiteboard": {
+        "title": "سبورة ذكية",
+        "desc": "أدوات تعاون فورية للمعلم والطالب عن بعد."
+      },
+      "mindmap": {
+        "title": "خرائط ذهنية بالذكاء الاصطناعي",
+        "desc": "تحويل الأفكار المعقدة إلى مخططات سهلة الفهم."
+      }
+    },
+    "footerDesc": "نكسر الحواجز في تعليم التقنية عبر الذكاء الاصطناعي.",
+    "rights": "جميع الحقوق محفوظة"
+  },
+  "Courses": {
+    "heroBadge": "أكاديمية كوجني كود",
+    "heroTitle": "استكشف مساراتك البرمجية",
+    "heroDesc": "دورات مصممة هندسياً لتناسب أسلوبك الفريد في معالجة المعلومات والمنطق.",
+    "searchPlaceholder": "ابحث عن دورة، مهارة، أو تقنية...",
+    "searchBtn": "بحث",
+    "filterBy": "تصفية حسب",
+    "all": "الكل",
+    "enrolled": "المشتركين",
+    "allCourses": "كل الدورات",
+    "resultsFound": "تم العثور على {count} دورة",
+    "moduleCount": "وحدات تعليمية",
+    "instructor": "المحاضر",
+    "viewDetails": "عرض التفاصيل",
+    "featured": "مميزة",
+    "learningRoadmaps": "خرائط التعلم",
+    "browseByPath": "تصفح حسب المسار",
+    "pathHeroDesc": "ابحث عن دورة، مهارة، او تقنية وابداء التعلم مجانًا.",
+    "noPathsFound": "لم يتم العثور على مسارات. يرجى المحاولة مرة أخرى.",
+    "pathway": "مسار",
+    "totalCourses": "جميع الدورات",
+    "categories": {
+      "all": "الكل",
+      "logic": "المنطق برمي",
+      "web": "تطوير الويب",
+      "ai": "ذكاء اصطناعي"
+    }
+  },
+  "coursePage": {
+    "yourProgress": "تقدمك",
+    "lessonsCompleted": "دروس مكتملة",
+    "backToCourses": "العودة إلى الدورات",
+    "enroll": "سجّل الآن",
+    "enrolled": "أنت مسجّل",
+    "startLearning": "ابدأ التعلّم",
+    "sharesCourse": "مشاركة الدورة",
+    "copyLink": "نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط!",
+    "free": "مجاني",
+    "modules": "وحدات",
+    "students": "طلاب",
+    "lessons": "دروس",
+    "duration": "المدة",
+    "lastUpdated": "آخر تحديث",
+    "instructor": "المدرّب",
+    "aboutInstructor": "عن المدرّب",
+    "courseIncludes": "تشمل هذه الدورة",
+    "fullLifetimeAccess": "وصول كامل مدى الحياة",
+    "accessOnAllDevices": "الوصول على جميع الأجهزة",
+    "certificateOfCompletion": "شهادة إتمام",
+    "whatYoullLearn": "ماذا ستتعلّم",
+    "requirements": "المتطلبات",
+    "courseContent": "محتوى الدورة",
+    "noModules": "لا توجد وحدات متاحة بعد.",
+    "noLessons": "لا توجد دروس في هذه الوحدة.",
+    "lesson": "درس",
+    "untitledCourse": "دورة بلا عنوان",
+    "untitledModule": "وحدة بلا عنوان",
+    "untitledLesson": "درس بلا عنوان",
+    "noDescription": "لا يوجد وصف.",
+    "anonymous": "مجهول",
+    "noRequirements": "لا توجد متطلبات محددة.",
+    "noLearningOutcomes": "نتائج التعلّم قادمة قريباً.",
+    "hours": "ساعات",
+    "mins": "دقائق"
+  },
+  "Profile": {
+    "title": "الملف الشخصي",
+    "saveChanges": "حفظ التغييرات",
+    "saving": "جارٍ الحفظ...",
+    "accountInfo": "معلومات الحساب",
+    "name": "الاسم الكامل",
+    "email": "عنوان البريد الإلكتروني",
+    "security": "الأمان",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "updatePassword": "تحديث كلمة المرور",
+    "changeAvatar": "تغيير الصورة الرمزية",
+    "checkLevel": "التحقق من المستوى مرة أخرى",
+    "updated": "تم تحديث الملف الشخصي بنجاح",
+    "logout": "تسجيل الخروج"
+  },
+  "Common": {
+    "dashboard": "لوحة التحكم",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "search": "بحث...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "noData": "لا توجد بيانات متاحة بعد",
+    "manage": "إدارة",
+    "actions": "الاجراءات",
+    "overview": "نظرة عامة",
+    "studentPortal": "لوحة التعلم",
+    "teacherPortal": "لوحة المعلم",
+    "loading": "جاري التحميل...",
+    "submit": "إرسال",
+    "resend": "إعادة الإرسال",
+    "backToLogin": "العودة لتسجيل الدخول"
+  },
+  "verify": {
+    "titleRegister": "تحقق من بريدك الإلكتروني",
+    "titleReset": "تحقق من هويتك",
+    "description": "أرسلنا رمزًا مكونًا من 6 أرقام إلى",
+    "back": "العودة",
+    "verifyButton": "تحقق من الرمز",
+    "verifying": "جارٍ التحقق…",
+    "resend": "إعادة إرسال الرمز",
+    "resendIn": "إعادة الإرسال خلال",
+    "successRegister": "✓ تم التحقق من الحساب! جارٍ التوجيه…",
+    "successReset": "✓ تم التحقق من الهوية! جارٍ التوجيه…"
+  },
+ "resetPassword": {
+    "title": "إنشاء كلمة مرور جديدة",
+    "description": "تم التحقق من هويتك. اختر كلمة مرور قوية.",
+    "back": "العودة لتسجيل الدخول",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "passwordMismatch": "كلمتا المرور غير متطابقتين",
+    "submitButton": "إعادة تعيين كلمة المرور",
+    "saving": "جارٍ الحفظ…",
+    "successMessage": "✓ تم تحديث كلمة المرور بنجاح!",
+    "redirecting": "جارٍ توجيهك لتسجيل الدخول…"
+  },
+   "forgotPassword": {
+    "title": "نسيت كلمة المرور؟",
+    "description": "أدخل بريدك الإلكتروني وسنرسل لك رمز التحقق لإعادة تعيينها.",
+    "back": "العودة لتسجيل الدخول",
+    "emailLabel": "البريد الإلكتروني",
+    "submitButton": "إرسال رمز الاستعادة",
+    "sending": "جارٍ الإرسال…",
+    "sentMessage": "✓ تم الإرسال! جارٍ التوجيه…"
+  },
+  "Teacher": {
+    "title": "لوحة المعلم",
+    "totalStudents": "إجمالي الطلاب",
+    "activeCourses": "الدورات النشطة",
+    "avgQuizScore": "متوسط درجة الاختبار",
+    "myCourses": "دوراتي التدريبية",
+    "createCourse": "إنشاء دورة جديدة",
+    "studentPerformance": "أداء الطلاب",
+    "recentAttempts": "محاولات الاختبار الأخيرة",
+    "courseTitle": "عنوان الدورة",
+    "students": "الطلاب",
+    "status": "الحالة"
+  },
+  "Student": {
+    "title": "لوحة تعلم الطالب",
+    "myProgress": "تقدمي الدراسي",
+    "enrolledCourses": "الدورات المسجلة",
+    "currentLevel": "المستوى الحالي",
+    "beginner": "مبتدئ",
+    "intermediate": "متوسط",
+    "advanced": "متقدم",
+    "leaderboardRank": "ترتيبي في المتصدرين",
+    "continueLearning": "مواصلة التعلم",
+    "quizResults": "نتائج الاختبارات",
+    "Course": {
+      "modules": "Modules",
+      "lessons": "Lessons",
+      "completed": "Completed",
+      "inProgress": "In Progress"
+    }
+  },
+  "Course": {
+    "modules": "الوحدات",
+    "lessons": "الدروس",
+    "completed": "مكتمل",
+    "inProgress": "قيد التنفيذ"
+  },
+  "QuizForm": {
+    "title": "منشئ الاختبارات الذكي",
+    "topicLabel": "موضوع الدرس أو المادة",
+    "topicPlaceholder": "مثال: أساسيات الـ React",
+    "countLabel": "عدد الأسئلة",
+    "difficultyLabel": "المستوى",
+    "easy": "سهل",
+    "medium": "متوسط",
+    "hard": "صعب",
+    "submitBtn": "إنشاء الاختبار الآن",
+    "generating": "جاري إنشاء الأسئلة...",
+    "success": "تم إنشاء الاختبار وحفظه!",
+    "error": "حدث خطأ ما، يرجى المحاولة لاحقاً"
+  },
+  "quiz": {
+    "title": "الاختبارات",
+    "generate": "توليد اختبار",
+    "course": "الدورة التدريبية",
+    "edit": "تعديل الاختبار",
+    "delete": "حذف الاختبار",
+    "topic": "الموضوع",
+    "difficulty": "الصعوبة",
+    "questionCount": "عدد الأسئلة",
+    "language": "لغة الاختبار",
+    "additionalInstructions": "تعليمات إضافية (اختياري)",
+    "generating": "جاري التوليد...",
+    "saveChanges": "حفظ التغييرات",
+    "confirmDelete": "هل أنت متأكد من حذف هذا الاختبار؟",
+    "easy": "سهل",
+    "medium": "متوسط",
+    "hard": "صعب",
+    "multipleChoice": "اختيار من متعدد",
+    "trueFalse": "صح أو خطأ",
+    "attempts": "محاولات",
+    "noQuizzes": "لا توجد اختبارات بعد. أنشئ أول اختبار!",
+    "question": "سؤال",
+    "questions": "الاسئلة",
+    "options": "الخيارات",
+    "correct": "صحيح",
+    "addQuestion": "إضافة سؤال",
+    "addOption": "إضافة خيار",
+    "removeQuestion": "حذف السؤال"
+  },
+  "Sidebar": {
+    "home": "الرئيسية",
+    "courses": "الدورات",
+    "myCourses": "دوراتي التدريبية",
+    "quizzes": "الاختبارات",
+    "leaderboard": "المتصدرين",
+    "settings": "الاعدادات",
+    "logout": "تسجيل الخروج",
+    "dashboard": "لوحة التحكم",
+    "generateQuiz": "إنشاء اختبار",
+    "myQuizzes": "اختباراتي",
+    "students": "الطلاب",
+    "profile": "الملف الشخصي",
+    "whiteboard": "سبورة التعلم",
+    "assignments": "الواجبات",
+    "placementTest": "اختبار المستوي",
+    "learningPaths": "مسارات التعلم"
+  },
+  "students": {
+    "title": "جميع الطلاب",
+    "search": "ابحث عن طالب...",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "courses": "الكورسات المسجل بها",
+    "noCourses": "لا يوجد كورسات",
+    "noStudents": "لا يوجد طلاب",
+    "noStudentsDescription": "لا يوجد طلاب في هذا الكورس"
+  },
+  "leaderboard": {
+    "title": "لوحة المتصدرين",
+    "subtitle": "أفضل الطلاب مرتبين حسب الدرجات",
+    "rank": "الترتيب",
+    "student": "الطالب",
+    "score": "الدرجة",
+    "lastUpdated": "آخر تحديث",
+    "empty": "لا توجد إدخالات بعد. كن الأول في اللوحة!",
+    "you": "أنت",
+    "top3": {
+      "gold": "المركز الأول",
+      "silver": "المركز الثاني",
+      "bronze": "المركز الثالث"
+    },
+    "points": "{score} نقطة",
+    "refreshed": "تم التحديث الآن"
+  },
+  "study": {
+    "backToCourses": "دوراتي",
+    "modules": "وحدات الدورة",
+    "lesson": "الدرس",
+    "requiresLevel": "يتطلب مستوى",
+    "markComplete": "تحديد كمكتمل",
+    "markIncomplete": "إلغاء الاكتمال",
+    "completedBadge": "مكتمل",
+    "noContent": "لا يوجد محتوى لهذا الدرس.",
+    "transcript": "النص المكتوب",
+    "downloadMaterial": "تحميل المادة",
+    "videoLesson": "درس مرئي",
+    "textLesson": "قراءة",
+    "materialLesson": "مادة تعليمية",
+    "levels": {
+      "BEGINNER": "مبتدئ",
+      "INTERMEDIATE": "متوسط",
+      "ADVANCED": "متقدم"
+    },
+    "progress": "{percent}% من الدورة مكتمل",
+    "selectLesson": "اختر درسًا للبدء"
+  },
+  "courses": {
+    "title": "دوراتي",
+    "subtitle": "تابع من حيث توقفت",
+    "empty": "لم تسجّل في أي دورة بعد.",
+    "browseAll": "تصفح الدورات",
+    "progress": "{percent}% مكتمل",
+    "lessons": "{completed} / {total} درس",
+    "teacher": "المدرب",
+    "enrolledOn": "تاريخ التسجيل",
+    "continueLearning": "متابعة",
+    "startLearning": "ابدأ",
+    "completed": "مكتملة",
+    "inProgress": "قيد التقدم",
+    "notStarted": "لم تبدأ"
+  },
+  "teacher": {
+    "courses": {
+      "title": "دوراتي",
+      "subtitle": "أدر دوراتك وابنِها",
+      "new": "دورة جديدة",
+      "empty": "لا توجد دورات بعد. أنشئ أولى دوراتك!",
+      "modules": "{count} وحدات",
+      "enrollments": "{count} طلاب",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "deleteConfirm": "هل أنت متأكد من حذف هذه الدورة؟ لا يمكن التراجع.",
+      "manage": "إدارة المحتوى"
+    },
+    "courseForm": {
+      "createTitle": "إنشاء دورة",
+      "editTitle": "تعديل الدورة",
+      "titleLabel": "عنوان الدورة",
+      "titlePlaceholder": "مثال: React المتقدم",
+      "descLabel": "الوصف",
+      "descPlaceholder": "ماذا سيتعلم الطلاب؟",
+      "thumbnailLabel": "الصورة المصغرة",
+      "thumbnailHint": "JPG أو PNG، الحجم الأقصى 2MB",
+      "uploading": "جارٍ الرفع…",
+      "submit": "إنشاء الدورة",
+      "submitEdit": "حفظ التغييرات",
+      "submitting": "جارٍ الحفظ…",
+      "uploadError": "فشل الرفع. حاول مرة أخرى.",
+      "sizeError": "يجب أن تكون الصورة أقل من 2MB.",
+      "typeError": "يُسمح فقط بملفات الصور."
+    },
+    "modules": {
+      "title": "وحدات الدورة",
+      "addModule": "إضافة وحدة",
+      "editModule": "تعديل الوحدة",
+      "deleteModule": "حذف الوحدة",
+      "moduleTitle": "عنوان الوحدة",
+      "moduleTitlePlaceholder": "مثال: مقدمة في React",
+      "moduleDesc": "الوصف",
+      "moduleDescPlaceholder": "نظرة عامة اختيارية…",
+      "level": "المستوى",
+      "levels": {
+        "BEGINNER": "مبتدئ",
+        "INTERMEDIATE": "متوسط",
+        "ADVANCED": "متقدم"
+      },
+      "save": "حفظ الوحدة",
+      "cancel": "إلغاء",
+      "noModules": "لا توجد وحدات بعد.",
+      "dragHint": "اسحب لإعادة الترتيب"
+    },
+    "lessons": {
+      "addLesson": "إضافة درس",
+      "editLesson": "تعديل الدرس",
+      "deleteLesson": "حذف الدرس",
+      "lessonTitle": "عنوان الدرس",
+      "lessonTitlePlaceholder": "مثال: React Hooks بعمق",
+      "type": "النوع",
+      "types": {
+        "VIDEO": "فيديو",
+        "TEXT": "نص / قراءة",
+        "MATERIAL": "مادة قابلة للتحميل"
+      },
+      "content": "المحتوى",
+      "contentPlaceholder": "اكتب محتوى الدرس هنا…",
+      "videoUrl": "رابط الفيديو",
+      "videoUrlPlaceholder": "https://…",
+      "materialUrl": "رابط المادة",
+      "materialUrlPlaceholder": "https://…",
+      "transcript": "النص المكتوب",
+      "transcriptPlaceholder": "الصق النص هنا…",
+      "save": "حفظ الدرس",
+      "cancel": "إلغاء",
+      "noLessons": "لا توجد دروس في هذه الوحدة."
+    },
+    "learningPaths": {
+      "title": "مسارات التعلم",
+      "subtitle": "احتضن تسلسلاً مرتباً من الدورات",
+      "new": "مسار تعلم جديد",
+      "empty": "لا توجد مسارات تعلم بعد.",
+      "courses": "{count} دورات",
+      "students": "{count} طلاب",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "deleteConfirm": "هل تريد حذف هذا المسار؟"
+    },
+    "learningPathForm": {
+      "createTitle": "إنشاء مسار تعلم",
+      "editTitle": "تعديل مسار التعلم",
+      "titleLabel": "العنوان",
+      "titlePlaceholder": "مثال: تطوير الويب الشامل",
+      "descLabel": "الوصف",
+      "descPlaceholder": "ماذا سيحقق الطلاب؟",
+      "thumbnailLabel": "الصورة المصغرة",
+      "coursesLabel": "الدورات",
+      "coursesHint": "ابحث وأضف الدورات بالترتيب. اسحب لإعادة الترتيب.",
+      "searchCourses": "ابحث عن دورات…",
+      "noCourses": "لا توجد دورات تطابق بحثك.",
+      "noCoursesAdded": "لم تُضف أي دورات بعد.",
+      "removeCourse": "إزالة",
+      "submit": "إنشاء مسار التعلم",
+      "submitEdit": "حفظ التغييرات",
+      "submitting": "جارٍ الحفظ…"
+    },
+    "validation": {
+      "titleRequired": "العنوان مطلوب.",
+      "titleMin": "يجب أن يكون العنوان 3 أحرف على الأقل."
+    },
+    "linkPaths": {
+      "title": "مسارات التعلم",
+      "subtitle": "تظهر هذه الدورة في مسارات التعلم التالية.",
+      "link": "إضافة إلى مسار تعلم",
+      "unlink": "إزالة",
+      "noLinks": "غير مرتبطة بأي مسار تعلم.",
+      "searchPlaceholder": "ابحث عن مسارات…",
+      "noResults": "لا توجد مسارات تطابق بحثك.",
+      "alreadyLinked": "مرتبط بالفعل",
+      "addSuccess": "تمت إضافة الدورة إلى المسار.",
+      "removeSuccess": "تمت إزالة الدورة من المسار.",
+      "courses": "{count} دورات",
+      "cancel": "إلغاء",
+      "confirm": "إضافة إلى المسار"
+    }
+  },
+  "placementTest": {
+    "intro": {
+      "badge": "تقييم مدعوم بالذكاء الاصطناعي",
+      "title": "اكتشف مسارك التعليمي",
+      "subtitle": "أجب على 15 سؤالاً في مجالات ومستويات مختلفة. سيحدّد الذكاء الاصطناعي مستواك ويوصي بأفضل مجال لك.",
+      "startButton": "ابدأ الاختبار",
+      "loading": "جاري تحضير الأسئلة...",
+      "disclaimer": "يستغرق هذا الاختبار ما بين 10 و15 دقيقة.",
+      "features": {
+        "time": {
+          "title": "15 سؤالاً",
+          "description": "تغطّي مستويات المبتدئ والمتوسط والمتقدم عبر مجالات متعددة."
+        },
+        "adaptive": {
+          "title": "تغطية متعددة المجالات",
+          "description": "البرمجة، تطوير الويب، البيانات، الذكاء الاصطناعي، الخوارزميات وتصميم الأنظمة."
+        },
+        "results": {
+          "title": "نتائج فورية",
+          "description": "احصل على مستواك وتوصيتك المجالية فور الانتهاء من الاختبار."
+        },
+        "ai": {
+          "title": "تغذية راجعة بالذكاء الاصطناعي",
+          "description": "استقبل ملاحظات شخصية مدعومة بـ Google Gemini."
+        }
+      }
+    },
+    "quiz": {
+      "progress": "السؤال {current} من {total}",
+      "answered": "{count}/{total} تمت الإجابة",
+      "previous": "السابق",
+      "next": "التالي",
+      "submit": "تسليم الاختبار",
+      "difficulty": {
+        "beginner": "مبتدئ",
+        "intermediate": "متوسط",
+        "advanced": "متقدم"
+      },
+      "submitDialog": {
+        "title": "هل تريد تسليم اختبارك؟",
+        "unanswered": "لم تتم الإجابة على {count} سؤال/أسئلة بعد.",
+        "description": "بمجرد التسليم لن تتمكن من تغيير إجاباتك. هل أنت متأكد؟",
+        "cancel": "مراجعة الإجابات",
+        "confirm": "تسليم"
+      }
+    },
+    "result": {
+      "title": "اكتمل الاختبار!",
+      "subtitle": "إليك ملفك التعليمي الشخصي",
+      "recommendedField": "المجال الموصى به",
+      "recommendedDescription": "بناءً على أدائك، هذا هو أفضل مجال لبدء تعلّمك أو تعميقه.",
+      "aiFeedbackTitle": "تغذية راجعة بالذكاء الاصطناعي",
+      "breakdown": "تحليل الأداء",
+      "retake": "إعادة الاختبار",
+      "startLearning": "استكشف الدورات",
+      "levels": {
+        "beginner": "مستوى مبتدئ",
+        "intermediate": "مستوى متوسط",
+        "advanced": "مستوى متقدم"
+      }
+    }
+  },
+  "accessibleLearn": {
+    "header": {
+      "ariaLabel": "رأس وضع التعلم المُيسَّر",
+      "backToCourse": "العودة إلى الدورة",
+      "accessibleMode": "وضع الوصول",
+      "settings": "فتح إعدادات الصوت",
+      "ttsStatus": "تحويل النص إلى كلام {status}",
+      "tts": {
+        "idle": "جاهز",
+        "speaking": "يتحدث",
+        "paused": "متوقف مؤقتاً"
+      }
+    },
+    "nav": {
+      "ariaLabel": "قائمة الدروس",
+      "lessons": "الدروس",
+      "completed": "{count} من {total} مكتملة",
+      "done": "مكتمل"
+    },
+    "conversation": {
+      "ariaLabel": "محادثة الذكاء الاصطناعي",
+      "currentLesson": "الدرس الحالي",
+      "noPreview": "لا يوجد معاينة نصية.",
+      "voiceCommands": "الأوامر الصوتية المتاحة",
+      "thinking": "جاري التفكير...",
+      "replay": "إعادة التشغيل"
+    },
+    "controls": {
+      "ariaLabel": "أدوات التحكم الصوتي",
+      "ttsControls": "أدوات تحويل النص إلى كلام",
+      "startListening": "بدء الإدخال الصوتي",
+      "stopListening": "إيقاف الاستماع",
+      "micIdle": "اضغط على الميكروفون للتحدث",
+      "micListening": "أستمع... تحدث الآن",
+      "micProcessing": "جاري معالجة صوتك...",
+      "micError": "لم أتمكن من سماعك، حاول مجدداً",
+      "readLesson": "قراءة الدرس",
+      "pause": "إيقاف مؤقت",
+      "resume": "استئناف",
+      "stop": "إيقاف",
+      "summary": "ملخص",
+      "markComplete": "تحديد كمكتمل",
+      "hint": "يمكنك أيضاً استخدام الأوامر الصوتية"
+    },
+    "settings": {
+      "ariaLabel": "إعدادات سرعة الصوت",
+      "title": "إعدادات الصوت",
+      "rate": "سرعة الكلام",
+      "pitch": "درجة الصوت",
+      "slow": "بطيء",
+      "fast": "سريع",
+      "low": "منخفض",
+      "high": "مرتفع"
+    },
+    "voice": {
+      "stopped": "تم الإيقاف.",
+      "generatingSummary": "جاري إنشاء الملخص، يرجى الانتظار."
+    }
+  },
+  "mindMapsPage": {
+    "title": "ملخص الذكاء الاصطناعي والخرائط الذهنية",
+    "placeholder": "أدخل النص أو الموضوع هنا...",
+    "submit": "تحليل",
+    "loading": "جاري المعالجة بواسطة Gemini...",
+    "summary": "الملخص",
+    "mindMap": "الخريطة الذهنية"
+  }
+}

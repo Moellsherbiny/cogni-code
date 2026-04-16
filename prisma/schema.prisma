@@ -18,25 +18,38 @@ enum UserRole {
   ADMIN
 }
 
-model User {
-  id            String          @id @default(cuid())
-  name          String?
-  email         String          @unique
-  emailVerified DateTime?
-  image         String?
-  password      String?
-  role          UserRole        @default(STUDENT)
-  accounts      Account[]
-  sessions      Session[]
-  Authenticator Authenticator[]
+enum StudentLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
 
-  coursesTeaching Course[]     @relation("CoursesTeaching")
+model User {
+  id                     String                 @id @default(cuid())
+  name                   String?
+  email                  String                 @unique
+  emailVerified          DateTime?
+  image                  String?
+  password               String?
+  role                   UserRole               @default(STUDENT)
+  level                  StudentLevel           @default(BEGINNER)
+  accounts               Account[]
+  sessions               Session[]
+  Authenticator          Authenticator[]
+  learningPathProgresses LearningPathProgress[]
+  testSessions           PlacementTest[]
+  meetings               Meeting[]
+
+  otp             String?
+  otp_expires_at  DateTime?
+  is_otp_verified Boolean?
+  coursesTeaching Course[]      @relation("CoursesTeaching")
   enrollments     Enrollment[]
   progress        Progress[]
   quizAttempts    QuizAttempt[]
   leaderboard     Leaderboard[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 model Account {
@@ -93,29 +106,81 @@ model Authenticator {
   @@id([userId, credentialID])
 }
 
-model Course {
+model LearningPath {
   id          String  @id @default(cuid())
   title       String
   description String?
-  teacherId   String
-  teacher     User    @relation("CoursesTeaching", fields: [teacherId], references: [id], onDelete: Cascade)
+  thumbnail   String?
 
-  enrollments Enrollment[]
-  modules     Module[]
-  quizzes     Quiz[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  courses  LearningPathCourse[]
+  progress LearningPathProgress[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LearningPathCourse {
+  id             String @id @default(cuid())
+  learningPathId String
+  courseId       String
+
+  learningPath LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  course       Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  order Int @default(0)
+
+  createdAt DateTime @default(now())
+
+  @@unique([learningPathId, courseId])
+  @@unique([learningPathId, order])
+}
+
+model LearningPathProgress {
+  id             String @id @default(cuid())
+  studentId      String
+  learningPathId String
+
+  completed Boolean @default(false)
+
+  student      User         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  learningPath LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([studentId, learningPathId])
+}
+
+model Course {
+  id            String               @id @default(cuid())
+  title         String
+  description   String?
+  teacherId     String
+  teacher       User                 @relation("CoursesTeaching", fields: [teacherId], references: [id], onDelete: Cascade)
+  thumbnail     String?
+  enrollments   Enrollment[]
+  modules       Module[]
+  quizzes       Quiz[]
+  learningPaths LearningPathCourse[]
+  meetings      Meeting[]
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Module {
-  id          String   @id @default(cuid())
+  id          String       @id @default(cuid())
   title       String
   description String?
   courseId    String
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course      Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
   lessons     Lesson[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  level       StudentLevel @default(BEGINNER)
+  order       Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
 }
 
 enum LessonType {
@@ -136,8 +201,10 @@ model Lesson {
   moduleId   String
   module     Module     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
   progress   Progress[]
+  order      Int
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+
 }
 
 model Progress {
@@ -165,33 +232,39 @@ model Enrollment {
   @@unique([courseId, studentId])
 }
 
-model Quiz {
-  id          String     @id @default(cuid())
-  title       String
-  description String?
-  
-  courseId    String
-  course      Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  questions   Question[]
-  quizAttempts QuizAttempt[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+enum QuizDifficulty {
+  EASY
+  MEDIUM
+  HARD
 }
+
+model Quiz {
+  id           String         @id @default(cuid())
+  title        String
+  description  String?
+  difficulty   QuizDifficulty @default(EASY)
+  courseId     String
+  course       Course         @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  questions    Question[]
+  quizAttempts QuizAttempt[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
 enum QuestionType {
   MULTIPLE_CHOICE
   TRUE_FALSE
 }
 
-
 model Question {
-  id        String   @id @default(cuid())
+  id        String       @id @default(cuid())
   text      String
   type      QuestionType @default(MULTIPLE_CHOICE)
   quizId    String
-  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quiz      Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
   options   Option[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
 }
 
 model Option {
@@ -224,4 +297,42 @@ model Leaderboard {
   updatedAt DateTime @updatedAt
 
   @@unique([studentId])
+}
+
+model PlacementTest {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: id)
+  status      String // "STARTED", "COMPLETED"
+  score       Float
+  level       StudentLevel @default(BEGINNER)
+  recommended String
+  aiFeedback  String
+  createdAt   DateTime @default(now())
+}
+
+
+model Summary {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  content   String   @db.Text
+  summary   String   @db.Text
+  mindMap   Json     
+}
+
+
+model Meeting {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  roomName    String   @unique
+  scheduledAt DateTime
+  duration    Int      @default(60) // minutes
+  hostId      String
+  host        User     @relation(fields: [hostId], references: [id])
+  courseId    String?
+  course      Course?  @relation(fields: [courseId], references: [id])
+  isActive    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

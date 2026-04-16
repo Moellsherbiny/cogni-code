@@ -32,6 +32,10 @@ export type UserMinAggregateOutputType = {
   image: string | null
   password: string | null
   role: $Enums.UserRole | null
+  level: $Enums.StudentLevel | null
+  otp: string | null
+  otp_expires_at: Date | null
+  is_otp_verified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +48,10 @@ export type UserMaxAggregateOutputType = {
   image: string | null
   password: string | null
   role: $Enums.UserRole | null
+  level: $Enums.StudentLevel | null
+  otp: string | null
+  otp_expires_at: Date | null
+  is_otp_verified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +64,10 @@ export type UserCountAggregateOutputType = {
   image: number
   password: number
   role: number
+  level: number
+  otp: number
+  otp_expires_at: number
+  is_otp_verified: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -70,6 +82,10 @@ export type UserMinAggregateInputType = {
   image?: true
   password?: true
   role?: true
+  level?: true
+  otp?: true
+  otp_expires_at?: true
+  is_otp_verified?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +98,10 @@ export type UserMaxAggregateInputType = {
   image?: true
   password?: true
   role?: true
+  level?: true
+  otp?: true
+  otp_expires_at?: true
+  is_otp_verified?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -94,6 +114,10 @@ export type UserCountAggregateInputType = {
   image?: true
   password?: true
   role?: true
+  level?: true
+  otp?: true
+  otp_expires_at?: true
+  is_otp_verified?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -179,6 +203,10 @@ export type UserGroupByOutputType = {
   image: string | null
   password: string | null
   role: $Enums.UserRole
+  level: $Enums.StudentLevel
+  otp: string | null
+  otp_expires_at: Date | null
+  is_otp_verified: boolean | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -212,11 +240,18 @@ export type UserWhereInput = {
   image?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFilter<"User"> | $Enums.StudentLevel
+  otp?: Prisma.StringNullableFilter<"User"> | string | null
+  otp_expires_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  is_otp_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   Authenticator?: Prisma.AuthenticatorListRelationFilter
+  learningPathProgresses?: Prisma.LearningPathProgressListRelationFilter
+  testSessions?: Prisma.PlacementTestListRelationFilter
+  meetings?: Prisma.MeetingListRelationFilter
   coursesTeaching?: Prisma.CourseListRelationFilter
   enrollments?: Prisma.EnrollmentListRelationFilter
   progress?: Prisma.ProgressListRelationFilter
@@ -232,11 +267,18 @@ export type UserOrderByWithRelationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  otp?: Prisma.SortOrderInput | Prisma.SortOrder
+  otp_expires_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_otp_verified?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   Authenticator?: Prisma.AuthenticatorOrderByRelationAggregateInput
+  learningPathProgresses?: Prisma.LearningPathProgressOrderByRelationAggregateInput
+  testSessions?: Prisma.PlacementTestOrderByRelationAggregateInput
+  meetings?: Prisma.MeetingOrderByRelationAggregateInput
   coursesTeaching?: Prisma.CourseOrderByRelationAggregateInput
   enrollments?: Prisma.EnrollmentOrderByRelationAggregateInput
   progress?: Prisma.ProgressOrderByRelationAggregateInput
@@ -255,11 +297,18 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFilter<"User"> | $Enums.StudentLevel
+  otp?: Prisma.StringNullableFilter<"User"> | string | null
+  otp_expires_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  is_otp_verified?: Prisma.BoolNullableFilter<"User"> | boolean | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   accounts?: Prisma.AccountListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   Authenticator?: Prisma.AuthenticatorListRelationFilter
+  learningPathProgresses?: Prisma.LearningPathProgressListRelationFilter
+  testSessions?: Prisma.PlacementTestListRelationFilter
+  meetings?: Prisma.MeetingListRelationFilter
   coursesTeaching?: Prisma.CourseListRelationFilter
   enrollments?: Prisma.EnrollmentListRelationFilter
   progress?: Prisma.ProgressListRelationFilter
@@ -275,6 +324,10 @@ export type UserOrderByWithAggregationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  otp?: Prisma.SortOrderInput | Prisma.SortOrder
+  otp_expires_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_otp_verified?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -293,6 +346,10 @@ export type UserScalarWhereWithAggregatesInput = {
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelWithAggregatesFilter<"User"> | $Enums.StudentLevel
+  otp?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  otp_expires_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  is_otp_verified?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -305,11 +362,18 @@ export type UserCreateInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -325,11 +389,18 @@ export type UserUncheckedCreateInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -345,11 +416,18 @@ export type UserUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -365,11 +443,18 @@ export type UserUncheckedUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -385,6 +470,10 @@ export type UserCreateManyInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -397,6 +486,10 @@ export type UserUpdateManyMutationInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -409,6 +502,10 @@ export type UserUncheckedUpdateManyInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -421,6 +518,10 @@ export type UserCountOrderByAggregateInput = {
   image?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
+  otp_expires_at?: Prisma.SortOrder
+  is_otp_verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -433,6 +534,10 @@ export type UserMaxOrderByAggregateInput = {
   image?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
+  otp_expires_at?: Prisma.SortOrder
+  is_otp_verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -445,6 +550,10 @@ export type UserMinOrderByAggregateInput = {
   image?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  otp?: Prisma.SortOrder
+  otp_expires_at?: Prisma.SortOrder
+  is_otp_verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -468,6 +577,14 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
 
 export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole
+}
+
+export type EnumStudentLevelFieldUpdateOperationsInput = {
+  set?: $Enums.StudentLevel
+}
+
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -514,6 +631,20 @@ export type UserUpdateOneRequiredWithoutAuthenticatorNestedInput = {
   upsert?: Prisma.UserUpsertWithoutAuthenticatorInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuthenticatorInput, Prisma.UserUpdateWithoutAuthenticatorInput>, Prisma.UserUncheckedUpdateWithoutAuthenticatorInput>
+}
+
+export type UserCreateNestedOneWithoutLearningPathProgressesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLearningPathProgressesInput, Prisma.UserUncheckedCreateWithoutLearningPathProgressesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearningPathProgressesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLearningPathProgressesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLearningPathProgressesInput, Prisma.UserUncheckedCreateWithoutLearningPathProgressesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearningPathProgressesInput
+  upsert?: Prisma.UserUpsertWithoutLearningPathProgressesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLearningPathProgressesInput, Prisma.UserUpdateWithoutLearningPathProgressesInput>, Prisma.UserUncheckedUpdateWithoutLearningPathProgressesInput>
 }
 
 export type UserCreateNestedOneWithoutCoursesTeachingInput = {
@@ -586,6 +717,34 @@ export type UserUpdateOneRequiredWithoutLeaderboardNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLeaderboardInput, Prisma.UserUpdateWithoutLeaderboardInput>, Prisma.UserUncheckedUpdateWithoutLeaderboardInput>
 }
 
+export type UserCreateNestedOneWithoutTestSessionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTestSessionsInput, Prisma.UserUncheckedCreateWithoutTestSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTestSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTestSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTestSessionsInput, Prisma.UserUncheckedCreateWithoutTestSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTestSessionsInput
+  upsert?: Prisma.UserUpsertWithoutTestSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTestSessionsInput, Prisma.UserUpdateWithoutTestSessionsInput>, Prisma.UserUncheckedUpdateWithoutTestSessionsInput>
+}
+
+export type UserCreateNestedOneWithoutMeetingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMeetingsInput, Prisma.UserUncheckedCreateWithoutMeetingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMeetingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMeetingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMeetingsInput, Prisma.UserUncheckedCreateWithoutMeetingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMeetingsInput
+  upsert?: Prisma.UserUpsertWithoutMeetingsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMeetingsInput, Prisma.UserUpdateWithoutMeetingsInput>, Prisma.UserUncheckedUpdateWithoutMeetingsInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   name?: string | null
@@ -594,10 +753,17 @@ export type UserCreateWithoutAccountsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -613,10 +779,17 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -648,10 +821,17 @@ export type UserUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -667,10 +847,17 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -686,10 +873,17 @@ export type UserCreateWithoutSessionsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -705,10 +899,17 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -740,10 +941,17 @@ export type UserUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -759,10 +967,17 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -778,10 +993,17 @@ export type UserCreateWithoutAuthenticatorInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -797,10 +1019,17 @@ export type UserUncheckedCreateWithoutAuthenticatorInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -832,10 +1061,17 @@ export type UserUpdateWithoutAuthenticatorInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -851,10 +1087,137 @@ export type UserUncheckedUpdateWithoutAuthenticatorInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type UserCreateWithoutLearningPathProgressesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardCreateNestedManyWithoutStudentInput
+}
+
+export type UserUncheckedCreateWithoutLearningPathProgressesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type UserCreateOrConnectWithoutLearningPathProgressesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLearningPathProgressesInput, Prisma.UserUncheckedCreateWithoutLearningPathProgressesInput>
+}
+
+export type UserUpsertWithoutLearningPathProgressesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLearningPathProgressesInput, Prisma.UserUncheckedUpdateWithoutLearningPathProgressesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLearningPathProgressesInput, Prisma.UserUncheckedCreateWithoutLearningPathProgressesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLearningPathProgressesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLearningPathProgressesInput, Prisma.UserUncheckedUpdateWithoutLearningPathProgressesInput>
+}
+
+export type UserUpdateWithoutLearningPathProgressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUpdateManyWithoutStudentNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLearningPathProgressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -870,11 +1233,18 @@ export type UserCreateWithoutCoursesTeachingInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
@@ -889,11 +1259,18 @@ export type UserUncheckedCreateWithoutCoursesTeachingInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
@@ -924,11 +1301,18 @@ export type UserUpdateWithoutCoursesTeachingInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
@@ -943,11 +1327,18 @@ export type UserUncheckedUpdateWithoutCoursesTeachingInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
@@ -962,11 +1353,18 @@ export type UserCreateWithoutProgressInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
@@ -981,11 +1379,18 @@ export type UserUncheckedCreateWithoutProgressInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
@@ -1016,11 +1421,18 @@ export type UserUpdateWithoutProgressInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
@@ -1035,11 +1447,18 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
@@ -1054,11 +1473,18 @@ export type UserCreateWithoutEnrollmentsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
@@ -1073,11 +1499,18 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
@@ -1108,11 +1541,18 @@ export type UserUpdateWithoutEnrollmentsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
@@ -1127,11 +1567,18 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
@@ -1146,11 +1593,18 @@ export type UserCreateWithoutQuizAttemptsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1165,11 +1619,18 @@ export type UserUncheckedCreateWithoutQuizAttemptsInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1200,11 +1661,18 @@ export type UserUpdateWithoutQuizAttemptsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1219,11 +1687,18 @@ export type UserUncheckedUpdateWithoutQuizAttemptsInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1238,11 +1713,18 @@ export type UserCreateWithoutLeaderboardInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1257,11 +1739,18 @@ export type UserUncheckedCreateWithoutLeaderboardInput = {
   image?: string | null
   password?: string | null
   role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
   createdAt?: Date | string
   updatedAt?: Date | string
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1292,11 +1781,18 @@ export type UserUpdateWithoutLeaderboardInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1311,15 +1807,262 @@ export type UserUncheckedUpdateWithoutLeaderboardInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type UserCreateWithoutTestSessionsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardCreateNestedManyWithoutStudentInput
+}
+
+export type UserUncheckedCreateWithoutTestSessionsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type UserCreateOrConnectWithoutTestSessionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTestSessionsInput, Prisma.UserUncheckedCreateWithoutTestSessionsInput>
+}
+
+export type UserUpsertWithoutTestSessionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTestSessionsInput, Prisma.UserUncheckedUpdateWithoutTestSessionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTestSessionsInput, Prisma.UserUncheckedCreateWithoutTestSessionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTestSessionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTestSessionsInput, Prisma.UserUncheckedUpdateWithoutTestSessionsInput>
+}
+
+export type UserUpdateWithoutTestSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUpdateManyWithoutStudentNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTestSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type UserCreateWithoutMeetingsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardCreateNestedManyWithoutStudentInput
+}
+
+export type UserUncheckedCreateWithoutMeetingsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type UserCreateOrConnectWithoutMeetingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMeetingsInput, Prisma.UserUncheckedCreateWithoutMeetingsInput>
+}
+
+export type UserUpsertWithoutMeetingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMeetingsInput, Prisma.UserUncheckedUpdateWithoutMeetingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMeetingsInput, Prisma.UserUncheckedCreateWithoutMeetingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMeetingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMeetingsInput, Prisma.UserUncheckedUpdateWithoutMeetingsInput>
+}
+
+export type UserUpdateWithoutMeetingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUpdateManyWithoutStudentNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMeetingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 
@@ -1331,6 +2074,9 @@ export type UserCountOutputType = {
   accounts: number
   sessions: number
   Authenticator: number
+  learningPathProgresses: number
+  testSessions: number
+  meetings: number
   coursesTeaching: number
   enrollments: number
   progress: number
@@ -1342,6 +2088,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   Authenticator?: boolean | UserCountOutputTypeCountAuthenticatorArgs
+  learningPathProgresses?: boolean | UserCountOutputTypeCountLearningPathProgressesArgs
+  testSessions?: boolean | UserCountOutputTypeCountTestSessionsArgs
+  meetings?: boolean | UserCountOutputTypeCountMeetingsArgs
   coursesTeaching?: boolean | UserCountOutputTypeCountCoursesTeachingArgs
   enrollments?: boolean | UserCountOutputTypeCountEnrollmentsArgs
   progress?: boolean | UserCountOutputTypeCountProgressArgs
@@ -1378,6 +2127,27 @@ export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.E
  */
 export type UserCountOutputTypeCountAuthenticatorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AuthenticatorWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLearningPathProgressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LearningPathProgressWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTestSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlacementTestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMeetingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MeetingWhereInput
 }
 
 /**
@@ -1424,11 +2194,18 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   image?: boolean
   password?: boolean
   role?: boolean
+  level?: boolean
+  otp?: boolean
+  otp_expires_at?: boolean
+  is_otp_verified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   Authenticator?: boolean | Prisma.User$AuthenticatorArgs<ExtArgs>
+  learningPathProgresses?: boolean | Prisma.User$learningPathProgressesArgs<ExtArgs>
+  testSessions?: boolean | Prisma.User$testSessionsArgs<ExtArgs>
+  meetings?: boolean | Prisma.User$meetingsArgs<ExtArgs>
   coursesTeaching?: boolean | Prisma.User$coursesTeachingArgs<ExtArgs>
   enrollments?: boolean | Prisma.User$enrollmentsArgs<ExtArgs>
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
@@ -1445,6 +2222,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   image?: boolean
   password?: boolean
   role?: boolean
+  level?: boolean
+  otp?: boolean
+  otp_expires_at?: boolean
+  is_otp_verified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1457,6 +2238,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   image?: boolean
   password?: boolean
   role?: boolean
+  level?: boolean
+  otp?: boolean
+  otp_expires_at?: boolean
+  is_otp_verified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1469,15 +2254,22 @@ export type UserSelectScalar = {
   image?: boolean
   password?: boolean
   role?: boolean
+  level?: boolean
+  otp?: boolean
+  otp_expires_at?: boolean
+  is_otp_verified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "role" | "level" | "otp" | "otp_expires_at" | "is_otp_verified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   Authenticator?: boolean | Prisma.User$AuthenticatorArgs<ExtArgs>
+  learningPathProgresses?: boolean | Prisma.User$learningPathProgressesArgs<ExtArgs>
+  testSessions?: boolean | Prisma.User$testSessionsArgs<ExtArgs>
+  meetings?: boolean | Prisma.User$meetingsArgs<ExtArgs>
   coursesTeaching?: boolean | Prisma.User$coursesTeachingArgs<ExtArgs>
   enrollments?: boolean | Prisma.User$enrollmentsArgs<ExtArgs>
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
@@ -1494,6 +2286,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     Authenticator: Prisma.$AuthenticatorPayload<ExtArgs>[]
+    learningPathProgresses: Prisma.$LearningPathProgressPayload<ExtArgs>[]
+    testSessions: Prisma.$PlacementTestPayload<ExtArgs>[]
+    meetings: Prisma.$MeetingPayload<ExtArgs>[]
     coursesTeaching: Prisma.$CoursePayload<ExtArgs>[]
     enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
     progress: Prisma.$ProgressPayload<ExtArgs>[]
@@ -1508,6 +2303,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     image: string | null
     password: string | null
     role: $Enums.UserRole
+    level: $Enums.StudentLevel
+    otp: string | null
+    otp_expires_at: Date | null
+    is_otp_verified: boolean | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1907,6 +2706,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Authenticator<T extends Prisma.User$AuthenticatorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$AuthenticatorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  learningPathProgresses<T extends Prisma.User$learningPathProgressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$learningPathProgressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LearningPathProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  testSessions<T extends Prisma.User$testSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$testSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  meetings<T extends Prisma.User$meetingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$meetingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   coursesTeaching<T extends Prisma.User$coursesTeachingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$coursesTeachingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enrollments<T extends Prisma.User$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   progress<T extends Prisma.User$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1948,6 +2750,10 @@ export interface UserFieldRefs {
   readonly image: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'UserRole'>
+  readonly level: Prisma.FieldRef<"User", 'StudentLevel'>
+  readonly otp: Prisma.FieldRef<"User", 'String'>
+  readonly otp_expires_at: Prisma.FieldRef<"User", 'DateTime'>
+  readonly is_otp_verified: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -2412,6 +3218,78 @@ export type User$AuthenticatorArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.AuthenticatorScalarFieldEnum | Prisma.AuthenticatorScalarFieldEnum[]
+}
+
+/**
+ * User.learningPathProgresses
+ */
+export type User$learningPathProgressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LearningPathProgress
+   */
+  select?: Prisma.LearningPathProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LearningPathProgress
+   */
+  omit?: Prisma.LearningPathProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LearningPathProgressInclude<ExtArgs> | null
+  where?: Prisma.LearningPathProgressWhereInput
+  orderBy?: Prisma.LearningPathProgressOrderByWithRelationInput | Prisma.LearningPathProgressOrderByWithRelationInput[]
+  cursor?: Prisma.LearningPathProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LearningPathProgressScalarFieldEnum | Prisma.LearningPathProgressScalarFieldEnum[]
+}
+
+/**
+ * User.testSessions
+ */
+export type User$testSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PlacementTest
+   */
+  select?: Prisma.PlacementTestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PlacementTest
+   */
+  omit?: Prisma.PlacementTestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlacementTestInclude<ExtArgs> | null
+  where?: Prisma.PlacementTestWhereInput
+  orderBy?: Prisma.PlacementTestOrderByWithRelationInput | Prisma.PlacementTestOrderByWithRelationInput[]
+  cursor?: Prisma.PlacementTestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PlacementTestScalarFieldEnum | Prisma.PlacementTestScalarFieldEnum[]
+}
+
+/**
+ * User.meetings
+ */
+export type User$meetingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Meeting
+   */
+  select?: Prisma.MeetingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Meeting
+   */
+  omit?: Prisma.MeetingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MeetingInclude<ExtArgs> | null
+  where?: Prisma.MeetingWhereInput
+  orderBy?: Prisma.MeetingOrderByWithRelationInput | Prisma.MeetingOrderByWithRelationInput[]
+  cursor?: Prisma.MeetingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MeetingScalarFieldEnum | Prisma.MeetingScalarFieldEnum[]
 }
 
 /**

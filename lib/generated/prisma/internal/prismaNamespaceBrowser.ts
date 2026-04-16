@@ -56,6 +56,9 @@ export const ModelName = {
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
+  LearningPath: 'LearningPath',
+  LearningPathCourse: 'LearningPathCourse',
+  LearningPathProgress: 'LearningPathProgress',
   Course: 'Course',
   Module: 'Module',
   Lesson: 'Lesson',
@@ -65,7 +68,10 @@ export const ModelName = {
   Question: 'Question',
   Option: 'Option',
   QuizAttempt: 'QuizAttempt',
-  Leaderboard: 'Leaderboard'
+  Leaderboard: 'Leaderboard',
+  PlacementTest: 'PlacementTest',
+  Summary: 'Summary',
+  Meeting: 'Meeting'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -92,6 +98,10 @@ export const UserScalarFieldEnum = {
   image: 'image',
   password: 'password',
   role: 'role',
+  level: 'level',
+  otp: 'otp',
+  otp_expires_at: 'otp_expires_at',
+  is_otp_verified: 'is_otp_verified',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -152,11 +162,47 @@ export const AuthenticatorScalarFieldEnum = {
 export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)[keyof typeof AuthenticatorScalarFieldEnum]
 
 
+export const LearningPathScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  thumbnail: 'thumbnail',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LearningPathScalarFieldEnum = (typeof LearningPathScalarFieldEnum)[keyof typeof LearningPathScalarFieldEnum]
+
+
+export const LearningPathCourseScalarFieldEnum = {
+  id: 'id',
+  learningPathId: 'learningPathId',
+  courseId: 'courseId',
+  order: 'order',
+  createdAt: 'createdAt'
+} as const
+
+export type LearningPathCourseScalarFieldEnum = (typeof LearningPathCourseScalarFieldEnum)[keyof typeof LearningPathCourseScalarFieldEnum]
+
+
+export const LearningPathProgressScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  learningPathId: 'learningPathId',
+  completed: 'completed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LearningPathProgressScalarFieldEnum = (typeof LearningPathProgressScalarFieldEnum)[keyof typeof LearningPathProgressScalarFieldEnum]
+
+
 export const CourseScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
   teacherId: 'teacherId',
+  thumbnail: 'thumbnail',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -169,6 +215,8 @@ export const ModuleScalarFieldEnum = {
   title: 'title',
   description: 'description',
   courseId: 'courseId',
+  level: 'level',
+  order: 'order',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -185,6 +233,7 @@ export const LessonScalarFieldEnum = {
   transcript: 'transcript',
   type: 'type',
   moduleId: 'moduleId',
+  order: 'order',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -219,6 +268,7 @@ export const QuizScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
+  difficulty: 'difficulty',
   courseId: 'courseId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -272,12 +322,61 @@ export const LeaderboardScalarFieldEnum = {
 export type LeaderboardScalarFieldEnum = (typeof LeaderboardScalarFieldEnum)[keyof typeof LeaderboardScalarFieldEnum]
 
 
+export const PlacementTestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  status: 'status',
+  score: 'score',
+  level: 'level',
+  recommended: 'recommended',
+  aiFeedback: 'aiFeedback',
+  createdAt: 'createdAt'
+} as const
+
+export type PlacementTestScalarFieldEnum = (typeof PlacementTestScalarFieldEnum)[keyof typeof PlacementTestScalarFieldEnum]
+
+
+export const SummaryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  content: 'content',
+  summary: 'summary',
+  mindMap: 'mindMap'
+} as const
+
+export type SummaryScalarFieldEnum = (typeof SummaryScalarFieldEnum)[keyof typeof SummaryScalarFieldEnum]
+
+
+export const MeetingScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  roomName: 'roomName',
+  scheduledAt: 'scheduledAt',
+  duration: 'duration',
+  hostId: 'hostId',
+  courseId: 'courseId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MeetingScalarFieldEnum = (typeof MeetingScalarFieldEnum)[keyof typeof MeetingScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -294,4 +393,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

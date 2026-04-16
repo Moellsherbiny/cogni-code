@@ -28,6 +28,7 @@ export type QuizMinAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
+  difficulty: $Enums.QuizDifficulty | null
   courseId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -37,6 +38,7 @@ export type QuizMaxAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
+  difficulty: $Enums.QuizDifficulty | null
   courseId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -46,6 +48,7 @@ export type QuizCountAggregateOutputType = {
   id: number
   title: number
   description: number
+  difficulty: number
   courseId: number
   createdAt: number
   updatedAt: number
@@ -57,6 +60,7 @@ export type QuizMinAggregateInputType = {
   id?: true
   title?: true
   description?: true
+  difficulty?: true
   courseId?: true
   createdAt?: true
   updatedAt?: true
@@ -66,6 +70,7 @@ export type QuizMaxAggregateInputType = {
   id?: true
   title?: true
   description?: true
+  difficulty?: true
   courseId?: true
   createdAt?: true
   updatedAt?: true
@@ -75,6 +80,7 @@ export type QuizCountAggregateInputType = {
   id?: true
   title?: true
   description?: true
+  difficulty?: true
   courseId?: true
   createdAt?: true
   updatedAt?: true
@@ -157,6 +163,7 @@ export type QuizGroupByOutputType = {
   id: string
   title: string
   description: string | null
+  difficulty: $Enums.QuizDifficulty
   courseId: string
   createdAt: Date
   updatedAt: Date
@@ -187,6 +194,7 @@ export type QuizWhereInput = {
   id?: Prisma.StringFilter<"Quiz"> | string
   title?: Prisma.StringFilter<"Quiz"> | string
   description?: Prisma.StringNullableFilter<"Quiz"> | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFilter<"Quiz"> | $Enums.QuizDifficulty
   courseId?: Prisma.StringFilter<"Quiz"> | string
   createdAt?: Prisma.DateTimeFilter<"Quiz"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Quiz"> | Date | string
@@ -199,6 +207,7 @@ export type QuizOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  difficulty?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -214,6 +223,7 @@ export type QuizWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.QuizWhereInput | Prisma.QuizWhereInput[]
   title?: Prisma.StringFilter<"Quiz"> | string
   description?: Prisma.StringNullableFilter<"Quiz"> | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFilter<"Quiz"> | $Enums.QuizDifficulty
   courseId?: Prisma.StringFilter<"Quiz"> | string
   createdAt?: Prisma.DateTimeFilter<"Quiz"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Quiz"> | Date | string
@@ -226,6 +236,7 @@ export type QuizOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  difficulty?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -241,6 +252,7 @@ export type QuizScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Quiz"> | string
   title?: Prisma.StringWithAggregatesFilter<"Quiz"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Quiz"> | string | null
+  difficulty?: Prisma.EnumQuizDifficultyWithAggregatesFilter<"Quiz"> | $Enums.QuizDifficulty
   courseId?: Prisma.StringWithAggregatesFilter<"Quiz"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Quiz"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Quiz"> | Date | string
@@ -250,6 +262,7 @@ export type QuizCreateInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   createdAt?: Date | string
   updatedAt?: Date | string
   course: Prisma.CourseCreateNestedOneWithoutQuizzesInput
@@ -261,6 +274,7 @@ export type QuizUncheckedCreateInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   courseId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -272,6 +286,7 @@ export type QuizUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course?: Prisma.CourseUpdateOneRequiredWithoutQuizzesNestedInput
@@ -283,6 +298,7 @@ export type QuizUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -294,6 +310,7 @@ export type QuizCreateManyInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   courseId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -303,6 +320,7 @@ export type QuizUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -311,6 +329,7 @@ export type QuizUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -330,6 +349,7 @@ export type QuizCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  difficulty?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -339,6 +359,7 @@ export type QuizMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  difficulty?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -348,6 +369,7 @@ export type QuizMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  difficulty?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -400,6 +422,10 @@ export type QuizUncheckedUpdateManyWithoutCourseNestedInput = {
   deleteMany?: Prisma.QuizScalarWhereInput | Prisma.QuizScalarWhereInput[]
 }
 
+export type EnumQuizDifficultyFieldUpdateOperationsInput = {
+  set?: $Enums.QuizDifficulty
+}
+
 export type QuizCreateNestedOneWithoutQuestionsInput = {
   create?: Prisma.XOR<Prisma.QuizCreateWithoutQuestionsInput, Prisma.QuizUncheckedCreateWithoutQuestionsInput>
   connectOrCreate?: Prisma.QuizCreateOrConnectWithoutQuestionsInput
@@ -432,6 +458,7 @@ export type QuizCreateWithoutCourseInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   createdAt?: Date | string
   updatedAt?: Date | string
   questions?: Prisma.QuestionCreateNestedManyWithoutQuizInput
@@ -442,6 +469,7 @@ export type QuizUncheckedCreateWithoutCourseInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   createdAt?: Date | string
   updatedAt?: Date | string
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutQuizInput
@@ -481,6 +509,7 @@ export type QuizScalarWhereInput = {
   id?: Prisma.StringFilter<"Quiz"> | string
   title?: Prisma.StringFilter<"Quiz"> | string
   description?: Prisma.StringNullableFilter<"Quiz"> | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFilter<"Quiz"> | $Enums.QuizDifficulty
   courseId?: Prisma.StringFilter<"Quiz"> | string
   createdAt?: Prisma.DateTimeFilter<"Quiz"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Quiz"> | Date | string
@@ -490,6 +519,7 @@ export type QuizCreateWithoutQuestionsInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   createdAt?: Date | string
   updatedAt?: Date | string
   course: Prisma.CourseCreateNestedOneWithoutQuizzesInput
@@ -500,6 +530,7 @@ export type QuizUncheckedCreateWithoutQuestionsInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   courseId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -526,6 +557,7 @@ export type QuizUpdateWithoutQuestionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course?: Prisma.CourseUpdateOneRequiredWithoutQuizzesNestedInput
@@ -536,6 +568,7 @@ export type QuizUncheckedUpdateWithoutQuestionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -546,6 +579,7 @@ export type QuizCreateWithoutQuizAttemptsInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   createdAt?: Date | string
   updatedAt?: Date | string
   course: Prisma.CourseCreateNestedOneWithoutQuizzesInput
@@ -556,6 +590,7 @@ export type QuizUncheckedCreateWithoutQuizAttemptsInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   courseId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -582,6 +617,7 @@ export type QuizUpdateWithoutQuizAttemptsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course?: Prisma.CourseUpdateOneRequiredWithoutQuizzesNestedInput
@@ -592,6 +628,7 @@ export type QuizUncheckedUpdateWithoutQuizAttemptsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -602,6 +639,7 @@ export type QuizCreateManyCourseInput = {
   id?: string
   title: string
   description?: string | null
+  difficulty?: $Enums.QuizDifficulty
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -610,6 +648,7 @@ export type QuizUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.QuestionUpdateManyWithoutQuizNestedInput
@@ -620,6 +659,7 @@ export type QuizUncheckedUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutQuizNestedInput
@@ -630,6 +670,7 @@ export type QuizUncheckedUpdateManyWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficulty?: Prisma.EnumQuizDifficultyFieldUpdateOperationsInput | $Enums.QuizDifficulty
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -678,6 +719,7 @@ export type QuizSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   title?: boolean
   description?: boolean
+  difficulty?: boolean
   courseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -691,6 +733,7 @@ export type QuizSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   title?: boolean
   description?: boolean
+  difficulty?: boolean
   courseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -701,6 +744,7 @@ export type QuizSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   title?: boolean
   description?: boolean
+  difficulty?: boolean
   courseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -711,12 +755,13 @@ export type QuizSelectScalar = {
   id?: boolean
   title?: boolean
   description?: boolean
+  difficulty?: boolean
   courseId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type QuizOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["quiz"]>
+export type QuizOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "difficulty" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["quiz"]>
 export type QuizInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
   questions?: boolean | Prisma.Quiz$questionsArgs<ExtArgs>
@@ -741,6 +786,7 @@ export type $QuizPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     title: string
     description: string | null
+    difficulty: $Enums.QuizDifficulty
     courseId: string
     createdAt: Date
     updatedAt: Date
@@ -1173,6 +1219,7 @@ export interface QuizFieldRefs {
   readonly id: Prisma.FieldRef<"Quiz", 'String'>
   readonly title: Prisma.FieldRef<"Quiz", 'String'>
   readonly description: Prisma.FieldRef<"Quiz", 'String'>
+  readonly difficulty: Prisma.FieldRef<"Quiz", 'QuizDifficulty'>
   readonly courseId: Prisma.FieldRef<"Quiz", 'String'>
   readonly createdAt: Prisma.FieldRef<"Quiz", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Quiz", 'DateTime'>

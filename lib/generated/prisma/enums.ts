@@ -18,6 +18,15 @@ export const UserRole = {
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
+export const StudentLevel = {
+  BEGINNER: 'BEGINNER',
+  INTERMEDIATE: 'INTERMEDIATE',
+  ADVANCED: 'ADVANCED'
+} as const
+
+export type StudentLevel = (typeof StudentLevel)[keyof typeof StudentLevel]
+
+
 export const LessonType = {
   VIDEO: 'VIDEO',
   TEXT: 'TEXT',
@@ -25,6 +34,15 @@ export const LessonType = {
 } as const
 
 export type LessonType = (typeof LessonType)[keyof typeof LessonType]
+
+
+export const QuizDifficulty = {
+  EASY: 'EASY',
+  MEDIUM: 'MEDIUM',
+  HARD: 'HARD'
+} as const
+
+export type QuizDifficulty = (typeof QuizDifficulty)[keyof typeof QuizDifficulty]
 
 
 export const QuestionType = {

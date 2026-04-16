@@ -67,6 +67,21 @@ export type VerificationToken = Prisma.VerificationTokenModel
  */
 export type Authenticator = Prisma.AuthenticatorModel
 /**
+ * Model LearningPath
+ * 
+ */
+export type LearningPath = Prisma.LearningPathModel
+/**
+ * Model LearningPathCourse
+ * 
+ */
+export type LearningPathCourse = Prisma.LearningPathCourseModel
+/**
+ * Model LearningPathProgress
+ * 
+ */
+export type LearningPathProgress = Prisma.LearningPathProgressModel
+/**
  * Model Course
  * 
  */
@@ -116,3 +131,18 @@ export type QuizAttempt = Prisma.QuizAttemptModel
  * 
  */
 export type Leaderboard = Prisma.LeaderboardModel
+/**
+ * Model PlacementTest
+ * 
+ */
+export type PlacementTest = Prisma.PlacementTestModel
+/**
+ * Model Summary
+ * 
+ */
+export type Summary = Prisma.SummaryModel
+/**
+ * Model Meeting
+ * 
+ */
+export type Meeting = Prisma.MeetingModel

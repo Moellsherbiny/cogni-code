@@ -1,0 +1,694 @@
+{
+  "Navbar": {
+    "links": {
+      "features": "Features",
+      "courses": "Courses",
+      "audience": "Audience",
+      "pricing": "Pricing"
+    },
+    "badges": {
+      "new": "New"
+    },
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "login": "Sign In",
+    "getStarted": "Get Started",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "brand": "EduPlatform",
+    "side": {
+      "tagline": "Student Portal",
+      "headline1": "Learn without",
+      "headline2": "limits.",
+      "body": "Your personalized learning journey starts here. Pick up where you left off, any time.",
+      "features": {
+        "courses": {
+          "title": "Rich Course Library",
+          "desc": "Access hundreds of structured lessons across modules."
+        },
+        "progress": {
+          "title": "Track Your Progress",
+          "desc": "Climb the leaderboard as you complete courses."
+        },
+        "community": {
+          "title": "Learn Together",
+          "desc": "Join a community of motivated students."
+        }
+      }
+    },
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Welcome back — enter your details below.",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "forgot": "Forgot password?",
+      "submit": "Sign In",
+      "submitting": "Signing in…",
+      "google": "Continue with Google",
+      "or": "or",
+      "noAccount": "Don't have an account?",
+      "signUp": "Create one",
+      "successToast": "Welcome back!",
+      "errorToast": "Invalid email or password."
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Join thousands of learners today — it's free.",
+      "name": "Full Name",
+      "namePlaceholder": "Jane Smith",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Min. 6 characters",
+      "roleLabel": "I am a…",
+      "roleStudent": "Student",
+      "roleStudentDesc": "I want to learn and take courses.",
+      "roleTeacher": "Teacher",
+      "roleTeacherDesc": "I want to create and teach courses.",
+      "submit": "Create Account",
+      "submitting": "Creating account…",
+      "google": "Continue with Google",
+      "or": "or",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "successToast": "Account created! Signing you in…",
+      "errorToast": "Registration failed.",
+      "networkError": "Network error. Please try again."
+    },
+    "forgot": {
+      "title": "Forgot password?",
+      "subtitle": "Enter your email and we'll send you a reset link.",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "submit": "Send Reset Link",
+      "submitting": "Sending…",
+      "backToLogin": "Back to sign in",
+      "successTitle": "Check your inbox",
+      "successBody": "If an account exists for {email}, you'll receive a reset link shortly.",
+      "successToast": "Reset link sent!"
+    },
+    "validation": {
+      "nameRequired": "Full name is required.",
+      "nameMin": "Name must be at least 2 characters.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordRequired": "Password is required.",
+      "passwordMin": "Password must be at least 6 characters."
+    },
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "errors": {
+    "userNotFound": "User not found",
+    "unauthorized": "Unauthorized action",
+    "somethingWentWrong": "Something went wrong"
+  },
+  "Home": {
+    "badge": "Arabic-Origin AI Innovation",
+    "heroTitle1": "Learn to Code",
+    "heroTitle2": "Your Way.",
+    "heroDesc": "Empowering learners of all abilities through adaptive AI and inclusive design. The future of coding is finally accessible to everyone.",
+    "startLearning": "Start Learning Free",
+    "exploreCourses": "Explore Courses",
+    "startTeaching": "Start Teaching",
+    "stats": {
+      "courses": "Courses",
+      "groups": "Groups",
+      "inclusive": "Inclusive"
+    },
+    "audienceTitle": "Education for Everyone.",
+    "audienceDesc": "Tailored environments for every cognitive and physical need.",
+    "audiences": {
+      "allAges": {
+        "label": "All Ages",
+        "desc": "Adaptive paths for every stage of life."
+      },
+      "visual": {
+        "label": "Visually Impaired",
+        "desc": "Full screen-reader optimization and voice UI."
+      },
+      "autism": {
+        "label": "Autism Spectrum",
+        "desc": "Minimalist, low-stimuli focused environment."
+      },
+      "learning": {
+        "label": "Learning Difficulties",
+        "desc": "Dyslexia-friendly fonts and paced learning."
+      }
+    },
+    "featuresTitle": "The Future of",
+    "featuresHighlight": "Learning Tech.",
+    "features": {
+      "adaptive": {
+        "title": "Adaptive Learning Engine",
+        "desc": "The platform dynamically adjusts difficulty in real-time based on your progress."
+      },
+      "whiteboard": {
+        "title": "Smart Whiteboard",
+        "desc": "Instant collaboration tools designed for remote teacher-student pairs."
+      },
+      "mindmap": {
+        "title": "AI Mind Maps",
+        "desc": "Automatically visualize logic flows to help simplify complex coding concepts."
+      }
+    },
+    "footerDesc": "Breaking barriers in tech education through AI-driven inclusivity. Made with passion for the global Arabic developer community.",
+    "rights": "All rights reserved."
+  },
+  "Courses": {
+    "heroBadge": "CogniCode Academy",
+    "heroTitle": "Master the Language of Logic",
+    "heroDesc": "Explore courses engineered to match your unique way of processing information. From visual logic to advanced architecture.",
+    "searchPlaceholder": "Search for a course, skill, or technology...",
+    "searchBtn": "Search",
+    "filterBy": "Filter by",
+    "all": "All",
+    "enrolled": "Enrolled",
+    "allCourses": "All Courses",
+    "resultsFound": "{count} courses found",
+    "moduleCount": "Learning Modules",
+    "instructor": "Instructor",
+    "viewDetails": "View Details",
+    "featured": "Featured",
+    "learningRoadmaps": "Learning Roadmaps",
+    "browseByPath": "Browse by Path",
+    "pathHeroDesc": "Search for a course, skill, or technology and start learning for free.",
+    "noPathsFound": "No paths found. Please try again.",
+    "pathway": "Pathway",
+    "totalCourses": "total courses",
+    "categories": {
+      "all": "All",
+      "logic": "Logic & Patterns",
+      "web": "Web Development",
+      "ai": "Artificial Intelligence"
+    }
+  },
+  "Profile": {
+    "title": "Profile",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "accountInfo": "Account Information",
+    "name": "Full Name",
+    "email": "Email Address",
+    "security": "Security",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "updatePassword": "Update Password",
+    "changeAvatar": "Change Avatar",
+    "checkLevel": "Check Level Again",
+    "updated": "Profile updated successfully",
+    "logout": "Logout"
+  },
+  "Common": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "logout": "Logout",
+    "search": "Search...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "noData": "No data available yet",
+    "manage": "Manage",
+    "actions": "Actions",
+    "overview": "Overview",
+    "studentPortal": "Student Portal",
+    "teacherPortal": "Teacher Portal",
+    "loading": "Loading...",
+    "submit": "Submit",
+    "resend": "Resend",
+    "backToLogin": "Back to login"
+  },
+  "verify": {
+    "titleRegister": "Check your inbox",
+    "titleReset": "Verify your identity",
+    "description": "We sent a 6-digit code to",
+    "back": "Go back",
+    "verifyButton": "Verify code",
+    "verifying": "Verifying…",
+    "resend": "Resend code",
+    "resendIn": "Resend code in",
+    "successRegister": "✓ Account verified! Redirecting…",
+    "successReset": "✓ Identity confirmed! Redirecting…"
+  },
+  "resetPassword": {
+    "title": "Create new password",
+    "description": "Your identity is confirmed. Choose a strong new password.",
+    "back": "Back to login",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "passwordMismatch": "Passwords do not match",
+    "submitButton": "Reset password",
+    "saving": "Saving…",
+    "successMessage": "✓ Password updated successfully!",
+    "redirecting": "Redirecting you to login…"
+  },
+  "forgotPassword": {
+    "title": "Forgot your password?",
+    "description": "Enter your email and we'll send you a verification code to reset it.",
+    "back": "Back to login",
+    "emailLabel": "Email address",
+    "submitButton": "Send reset code",
+    "sending": "Sending…",
+    "sentMessage": "✓ Code sent! Redirecting…"
+  },
+  "Teacher": {
+    "title": "Teacher Panel",
+    "totalStudents": "Total Students",
+    "activeCourses": "Active Courses",
+    "avgQuizScore": "Avg. Quiz Score",
+    "myCourses": "My Courses",
+    "createCourse": "Create New Course",
+    "studentPerformance": "Student Performance",
+    "recentAttempts": "Recent Quiz Attempts",
+    "courseTitle": "Course Title",
+    "students": "Students",
+    "status": "Status"
+  },
+  "Student": {
+    "title": "Learning Dashboard",
+    "myProgress": "My Progress",
+    "enrolledCourses": "Enrolled Courses",
+    "currentLevel": "Current Level",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "leaderboardRank": "Leaderboard Rank",
+    "continueLearning": "Continue Learning",
+    "quizResults": "Quiz Results",
+    "Course": {
+      "lessons": "Lessons"
+    }
+  },
+  "Course": {
+    "modules": "Modules",
+    "lessons": "Lessons",
+    "completed": "Completed",
+    "inProgress": "In Progress"
+  },
+  "coursePage": {
+    "yourProgress": "Your Progress",
+    "lessonsCompleted": "lessons completed",
+    "backToCourses": "Back to Courses",
+    "enroll": "Enroll Now",
+    "startLearning": "Start Learning",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link Copied!",
+    "modules": "Modules",
+    "students": "Students",
+    "lessons": "Lessons",
+    "lastUpdated": "Last Updated",
+    "instructor": "Instructor",
+    "aboutInstructor": "About Instructor",
+    "courseIncludes": "This Course Includes",
+    "fullLifetimeAccess": "Full lifetime access",
+    "accessOnAllDevices": "Access on all devices",
+    "certificateOfCompletion": "Certificate of completion",
+    "courseContent": "Course Content",
+    "noModules": "No modules available yet.",
+    "noLessons": "No lessons in this module.",
+    "anonymous": "Anonymous"
+  },
+  "QuizForm": {
+    "title": "Generate a New Quiz",
+    "topicLabel": "Topic of the Quiz",
+    "topicPlaceholder": "e.g. Basics of React",
+    "countLabel": "Number of Questions",
+    "difficultyLabel": "Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "submitBtn": "Generate Quiz Now",
+    "generating": "Generating Questions...",
+    "success": "Quiz generated successfully and saved!",
+    "error": "An error occurred. Please try again later."
+  },
+  "quiz": {
+    "title": "Quizzes",
+    "generate": "Generate Quiz",
+    "edit": "Edit Quiz",
+    "delete": "Delete Quiz",
+    "topic": "Topic",
+    "course": "Course",
+    "difficulty": "Difficulty",
+    "questionCount": "Number of Questions",
+    "language": "Quiz Language",
+    "additionalInstructions": "Additional Instructions (optional)",
+    "generating": "Generating...",
+    "saveChanges": "Save Changes",
+    "confirmDelete": "Are you sure you want to delete this quiz?",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "multipleChoice": "Multiple Choice",
+    "trueFalse": "True / False",
+    "attempts": "attempts",
+    "noQuizzes": "No quizzes yet. Generate your first one!",
+    "question": "Question",
+    "questions": "Questions",
+    "options": "Options",
+    "correct": "Correct",
+    "addQuestion": "Add Question",
+    "addOption": "Add Option",
+    "removeQuestion": "Remove Question"
+  },
+  "Sidebar": {
+    "home": "Home",
+    "courses": "Courses",
+    "myCourses": "My Courses",
+    "quizzes": "Quizzes",
+    "leaderboard": "Leaderboard",
+    "settings": "Settings",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "generateQuiz": "Generate Quiz",
+    "myQuizzes": "My Quizzes",
+    "students": "Students",
+    "profile": "Profile",
+    "whiteboard": "Whiteboard",
+    "assignments": "Assignments",
+    "placementTest": "Placement Test",
+    "learningPaths": "Learning Paths"
+  },
+  "students": {
+    "title": "All Students",
+    "search": "Search students...",
+    "name": "Name",
+    "email": "Email",
+    "courses": "Enrolled Courses",
+    "noCourses": "No courses",
+    "noStudents": "No students found",
+    "noStudentsDescription": "No students have enrolled to any course yet."
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "subtitle": "Top performers ranked by score",
+    "rank": "Rank",
+    "student": "Student",
+    "score": "Score",
+    "lastUpdated": "Last updated",
+    "empty": "No entries yet. Be the first on the board!",
+    "you": "You",
+    "top3": {
+      "gold": "1st Place",
+      "silver": "2nd Place",
+      "bronze": "3rd Place"
+    },
+    "points": "{score} pts",
+    "refreshed": "Refreshed just now"
+  },
+  "study": {
+    "backToCourses": "My Courses",
+    "modules": "Course Modules",
+    "lesson": "Lesson",
+    "requiresLevel": "Requires level",
+    "markComplete": "Mark as complete",
+    "markIncomplete": "Mark as incomplete",
+    "completedBadge": "Done",
+    "noContent": "No content available for this lesson.",
+    "transcript": "Transcript",
+    "downloadMaterial": "Download Material",
+    "videoLesson": "Video Lesson",
+    "textLesson": "Reading",
+    "materialLesson": "Material",
+    "levels": {
+      "BEGINNER": "Beginner",
+      "INTERMEDIATE": "Intermediate",
+      "ADVANCED": "Advanced"
+    },
+    "progress": "{percent}% of course completed",
+    "selectLesson": "Select a lesson to begin"
+  },
+  "courses": {
+    "title": "My Courses",
+    "subtitle": "Continue where you left off",
+    "empty": "You haven't enrolled in any courses yet.",
+    "browseAll": "Browse Courses",
+    "progress": "{percent}% complete",
+    "lessons": "{completed} / {total} lessons",
+    "teacher": "Instructor",
+    "enrolledOn": "Enrolled",
+    "continueLearning": "Continue",
+    "startLearning": "Start",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "notStarted": "Not Started"
+  },
+  "teacher": {
+    "courses": {
+      "title": "My Courses",
+      "subtitle": "Manage and build your courses",
+      "new": "New Course",
+      "empty": "No courses yet. Create your first one!",
+      "modules": "{count} modules",
+      "enrollments": "{count} students",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Are you sure you want to delete this course? This cannot be undone.",
+      "manage": "Manage Content"
+    },
+    "courseForm": {
+      "createTitle": "Create Course",
+      "editTitle": "Edit Course",
+      "titleLabel": "Course Title",
+      "titlePlaceholder": "e.g. Advanced React",
+      "descLabel": "Description",
+      "descPlaceholder": "What will students learn?",
+      "thumbnailLabel": "Thumbnail",
+      "thumbnailHint": "JPG or PNG, max 2MB",
+      "uploading": "Uploading…",
+      "submit": "Create Course",
+      "submitEdit": "Save Changes",
+      "submitting": "Saving…",
+      "uploadError": "Upload failed. Please try again.",
+      "sizeError": "Image must be under 2MB.",
+      "typeError": "Only image files are allowed."
+    },
+    "modules": {
+      "title": "Course Modules",
+      "addModule": "Add Module",
+      "editModule": "Edit Module",
+      "deleteModule": "Delete Module",
+      "moduleTitle": "Module Title",
+      "moduleTitlePlaceholder": "e.g. Introduction to React",
+      "moduleDesc": "Description",
+      "moduleDescPlaceholder": "Optional overview…",
+      "level": "Level",
+      "levels": {
+        "BEGINNER": "Beginner",
+        "INTERMEDIATE": "Intermediate",
+        "ADVANCED": "Advanced"
+      },
+      "save": "Save Module",
+      "cancel": "Cancel",
+      "noModules": "No modules yet. Add the first one.",
+      "dragHint": "Drag to reorder"
+    },
+    "lessons": {
+      "addLesson": "Add Lesson",
+      "editLesson": "Edit Lesson",
+      "deleteLesson": "Delete Lesson",
+      "lessonTitle": "Lesson Title",
+      "lessonTitlePlaceholder": "e.g. React Hooks Deep Dive",
+      "type": "Type",
+      "types": {
+        "VIDEO": "Video",
+        "TEXT": "Text / Reading",
+        "MATERIAL": "Downloadable Material"
+      },
+      "content": "Content",
+      "contentPlaceholder": "Write lesson content here…",
+      "videoUrl": "Video URL",
+      "videoUrlPlaceholder": "https://…",
+      "materialUrl": "Material URL",
+      "materialUrlPlaceholder": "https://…",
+      "transcript": "Transcript",
+      "transcriptPlaceholder": "Paste transcript here…",
+      "save": "Save Lesson",
+      "cancel": "Cancel",
+      "noLessons": "No lessons in this module."
+    },
+    "learningPaths": {
+      "title": "Learning Paths",
+      "subtitle": "Curate ordered sequences of courses",
+      "new": "New Learning Path",
+      "empty": "No learning paths yet.",
+      "courses": "{count} courses",
+      "students": "{count} students",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this learning path?"
+    },
+    "learningPathForm": {
+      "createTitle": "Create Learning Path",
+      "editTitle": "Edit Learning Path",
+      "titleLabel": "Title",
+      "titlePlaceholder": "e.g. Full Stack Web Development",
+      "descLabel": "Description",
+      "descPlaceholder": "What will students achieve?",
+      "thumbnailLabel": "Thumbnail",
+      "coursesLabel": "Courses",
+      "coursesHint": "Search and add courses in order. Drag to reorder.",
+      "searchCourses": "Search courses…",
+      "noCourses": "No courses match your search.",
+      "noCoursesAdded": "No courses added yet.",
+      "removeCourse": "Remove",
+      "submit": "Create Learning Path",
+      "submitEdit": "Save Changes",
+      "submitting": "Saving…"
+    },
+    "validation": {
+      "titleRequired": "Title is required.",
+      "titleMin": "Title must be at least 3 characters."
+    },
+    "linkPaths": {
+      "title": "Learning Paths",
+      "subtitle": "This course appears in the following learning paths.",
+      "link": "Add to a Learning Path",
+      "unlink": "Remove",
+      "noLinks": "Not linked to any learning path.",
+      "searchPlaceholder": "Search learning paths…",
+      "noResults": "No learning paths found.",
+      "alreadyLinked": "Already linked",
+      "addSuccess": "Course added to learning path.",
+      "removeSuccess": "Course removed from learning path.",
+      "courses": "{count} courses",
+      "cancel": "Cancel",
+      "confirm": "Add to Path"
+    }
+  },
+  "placementTest": {
+    "intro": {
+      "badge": "AI-Powered Assessment",
+      "title": "Find Your Learning Path",
+      "subtitle": "Answer 15 questions across different fields and difficulty levels. Our AI will determine your level and recommend the best field for you.",
+      "startButton": "Start the Test",
+      "loading": "Preparing questions...",
+      "disclaimer": "This test takes approximately 10–15 minutes to complete.",
+      "features": {
+        "time": {
+          "title": "15 Questions",
+          "description": "Covering beginner, intermediate, and advanced topics across multiple fields."
+        },
+        "adaptive": {
+          "title": "Multi-Field Coverage",
+          "description": "Programming, web dev, data, AI, algorithms, and system design."
+        },
+        "results": {
+          "title": "Instant Results",
+          "description": "Get your level and field recommendation immediately after submission."
+        },
+        "ai": {
+          "title": "AI Feedback",
+          "description": "Receive personalized feedback powered by Google Gemini."
+        }
+      }
+    },
+    "quiz": {
+      "progress": "Question {current} of {total}",
+      "answered": "{count}/{total} answered",
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit Test",
+      "difficulty": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "submitDialog": {
+        "title": "Submit your test?",
+        "unanswered": "{count} question(s) left unanswered.",
+        "description": "Once submitted, you cannot change your answers. Are you sure you want to submit?",
+        "cancel": "Review answers",
+        "confirm": "Submit"
+      }
+    },
+    "result": {
+      "title": "Test Complete!",
+      "subtitle": "Here's your personalized learning profile",
+      "recommendedField": "Recommended Field",
+      "recommendedDescription": "Based on your performance, this is the best field for you to start or deepen your learning.",
+      "aiFeedbackTitle": "AI Feedback",
+      "breakdown": "Performance Breakdown",
+      "retake": "Retake Test",
+      "startLearning": "Explore Courses",
+      "levels": {
+        "beginner": "Beginner Level",
+        "intermediate": "Intermediate Level",
+        "advanced": "Advanced Level"
+      }
+    }
+  },
+  "accessibleLearn": {
+    "header": {
+      "ariaLabel": "Accessible learning header",
+      "backToCourse": "Back to course",
+      "accessibleMode": "Accessible Mode",
+      "settings": "Open voice settings",
+      "ttsStatus": "Text-to-speech is {status}",
+      "tts": {
+        "idle": "Ready",
+        "speaking": "Speaking",
+        "paused": "Paused"
+      }
+    },
+    "nav": {
+      "ariaLabel": "Lesson navigator",
+      "lessons": "Lessons",
+      "completed": "{count} of {total} completed",
+      "done": "Completed"
+    },
+    "conversation": {
+      "ariaLabel": "AI conversation",
+      "currentLesson": "Current Lesson",
+      "noPreview": "No text preview available.",
+      "voiceCommands": "Voice commands you can use",
+      "thinking": "Thinking...",
+      "replay": "Replay"
+    },
+    "controls": {
+      "ariaLabel": "Voice controls",
+      "ttsControls": "Text-to-speech controls",
+      "startListening": "Start voice input",
+      "stopListening": "Stop listening",
+      "micIdle": "Tap the microphone to speak",
+      "micListening": "Listening... speak now",
+      "micProcessing": "Processing your voice...",
+      "micError": "Could not hear you, try again",
+      "readLesson": "Read Lesson",
+      "pause": "Pause",
+      "resume": "Resume",
+      "stop": "Stop",
+      "summary": "Summary",
+      "markComplete": "Mark Done",
+      "hint": "You can also use voice commands — say \"help\" for a list"
+    },
+    "settings": {
+      "ariaLabel": "Voice speed settings",
+      "title": "Voice Settings",
+      "rate": "Speech Speed",
+      "pitch": "Voice Pitch",
+      "slow": "Slow",
+      "fast": "Fast",
+      "low": "Low",
+      "high": "High"
+    },
+    "voice": {
+      "stopped": "Stopped.",
+      "generatingSummary": "Generating summary, please wait."
+    }
+  },
+  "mindMapsPage": {
+    "title": "AI Summarizer & Mind Map",
+    "placeholder": "Enter your text or topic here...",
+    "submit": "Analyze",
+    "loading": "Processing with Gemini...",
+    "summary": "Summary",
+    "mindMap": "Mind Map"
+  }
+}
