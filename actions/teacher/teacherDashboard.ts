@@ -48,11 +48,25 @@ export const getTeacherDashboardData = async ({
     },
   });
 
+  const activeMeetings = await prisma.meeting.findMany({
+    where: {
+      hostId: userId,
+      isActive: true,
+    },
+    include: {
+      course: {
+        select: {
+          title: true,
+        },
+      },
+    },
+  })
   return {
     coursesCreated,
     totalstudents: studentsEnrolled,
     activeCourses,
     avgQuizScore: avgQuizScore._avg.score || 0,
     courses,
+    activeMeetings,
   };
 };

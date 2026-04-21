@@ -252,6 +252,7 @@ export type UserWhereInput = {
   learningPathProgresses?: Prisma.LearningPathProgressListRelationFilter
   testSessions?: Prisma.PlacementTestListRelationFilter
   meetings?: Prisma.MeetingListRelationFilter
+  mindMapHistories?: Prisma.MindMapHistoryListRelationFilter
   coursesTeaching?: Prisma.CourseListRelationFilter
   enrollments?: Prisma.EnrollmentListRelationFilter
   progress?: Prisma.ProgressListRelationFilter
@@ -279,6 +280,7 @@ export type UserOrderByWithRelationInput = {
   learningPathProgresses?: Prisma.LearningPathProgressOrderByRelationAggregateInput
   testSessions?: Prisma.PlacementTestOrderByRelationAggregateInput
   meetings?: Prisma.MeetingOrderByRelationAggregateInput
+  mindMapHistories?: Prisma.MindMapHistoryOrderByRelationAggregateInput
   coursesTeaching?: Prisma.CourseOrderByRelationAggregateInput
   enrollments?: Prisma.EnrollmentOrderByRelationAggregateInput
   progress?: Prisma.ProgressOrderByRelationAggregateInput
@@ -309,6 +311,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   learningPathProgresses?: Prisma.LearningPathProgressListRelationFilter
   testSessions?: Prisma.PlacementTestListRelationFilter
   meetings?: Prisma.MeetingListRelationFilter
+  mindMapHistories?: Prisma.MindMapHistoryListRelationFilter
   coursesTeaching?: Prisma.CourseListRelationFilter
   enrollments?: Prisma.EnrollmentListRelationFilter
   progress?: Prisma.ProgressListRelationFilter
@@ -374,6 +377,7 @@ export type UserCreateInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -401,6 +405,7 @@ export type UserUncheckedCreateInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -428,6 +433,7 @@ export type UserUpdateInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -455,6 +461,7 @@ export type UserUncheckedUpdateInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -745,6 +752,20 @@ export type UserUpdateOneRequiredWithoutMeetingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMeetingsInput, Prisma.UserUpdateWithoutMeetingsInput>, Prisma.UserUncheckedUpdateWithoutMeetingsInput>
 }
 
+export type UserCreateNestedOneWithoutMindMapHistoriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMindMapHistoriesInput, Prisma.UserUncheckedCreateWithoutMindMapHistoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMindMapHistoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMindMapHistoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMindMapHistoriesInput, Prisma.UserUncheckedCreateWithoutMindMapHistoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMindMapHistoriesInput
+  upsert?: Prisma.UserUpsertWithoutMindMapHistoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMindMapHistoriesInput, Prisma.UserUpdateWithoutMindMapHistoriesInput>, Prisma.UserUncheckedUpdateWithoutMindMapHistoriesInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   name?: string | null
@@ -764,6 +785,7 @@ export type UserCreateWithoutAccountsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -790,6 +812,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -832,6 +855,7 @@ export type UserUpdateWithoutAccountsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -858,6 +882,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -884,6 +909,7 @@ export type UserCreateWithoutSessionsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -910,6 +936,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -952,6 +979,7 @@ export type UserUpdateWithoutSessionsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -978,6 +1006,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1004,6 +1033,7 @@ export type UserCreateWithoutAuthenticatorInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1030,6 +1060,7 @@ export type UserUncheckedCreateWithoutAuthenticatorInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1072,6 +1103,7 @@ export type UserUpdateWithoutAuthenticatorInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1098,6 +1130,7 @@ export type UserUncheckedUpdateWithoutAuthenticatorInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1124,6 +1157,7 @@ export type UserCreateWithoutLearningPathProgressesInput = {
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1150,6 +1184,7 @@ export type UserUncheckedCreateWithoutLearningPathProgressesInput = {
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1192,6 +1227,7 @@ export type UserUpdateWithoutLearningPathProgressesInput = {
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1218,6 +1254,7 @@ export type UserUncheckedUpdateWithoutLearningPathProgressesInput = {
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1245,6 +1282,7 @@ export type UserCreateWithoutCoursesTeachingInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
@@ -1271,6 +1309,7 @@ export type UserUncheckedCreateWithoutCoursesTeachingInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
@@ -1313,6 +1352,7 @@ export type UserUpdateWithoutCoursesTeachingInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
@@ -1339,6 +1379,7 @@ export type UserUncheckedUpdateWithoutCoursesTeachingInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
@@ -1365,6 +1406,7 @@ export type UserCreateWithoutProgressInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
@@ -1391,6 +1433,7 @@ export type UserUncheckedCreateWithoutProgressInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
@@ -1433,6 +1476,7 @@ export type UserUpdateWithoutProgressInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
@@ -1459,6 +1503,7 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
@@ -1485,6 +1530,7 @@ export type UserCreateWithoutEnrollmentsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
@@ -1511,6 +1557,7 @@ export type UserUncheckedCreateWithoutEnrollmentsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
   quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
@@ -1553,6 +1600,7 @@ export type UserUpdateWithoutEnrollmentsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
@@ -1579,6 +1627,7 @@ export type UserUncheckedUpdateWithoutEnrollmentsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
   quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
@@ -1605,6 +1654,7 @@ export type UserCreateWithoutQuizAttemptsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1631,6 +1681,7 @@ export type UserUncheckedCreateWithoutQuizAttemptsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1673,6 +1724,7 @@ export type UserUpdateWithoutQuizAttemptsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1699,6 +1751,7 @@ export type UserUncheckedUpdateWithoutQuizAttemptsInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1725,6 +1778,7 @@ export type UserCreateWithoutLeaderboardInput = {
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1751,6 +1805,7 @@ export type UserUncheckedCreateWithoutLeaderboardInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1793,6 +1848,7 @@ export type UserUpdateWithoutLeaderboardInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1819,6 +1875,7 @@ export type UserUncheckedUpdateWithoutLeaderboardInput = {
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1844,6 +1901,7 @@ export type UserCreateWithoutTestSessionsInput = {
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1870,6 +1928,7 @@ export type UserUncheckedCreateWithoutTestSessionsInput = {
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -1912,6 +1971,7 @@ export type UserUpdateWithoutTestSessionsInput = {
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -1938,6 +1998,7 @@ export type UserUncheckedUpdateWithoutTestSessionsInput = {
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -1964,6 +2025,7 @@ export type UserCreateWithoutMeetingsInput = {
   Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
   learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  mindMapHistories?: Prisma.MindMapHistoryCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
@@ -1990,6 +2052,7 @@ export type UserUncheckedCreateWithoutMeetingsInput = {
   Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
   testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedCreateNestedManyWithoutUserInput
   coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
   enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
@@ -2032,6 +2095,7 @@ export type UserUpdateWithoutMeetingsInput = {
   Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
   learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUpdateManyWithoutUserNestedInput
   coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
@@ -2058,6 +2122,131 @@ export type UserUncheckedUpdateWithoutMeetingsInput = {
   Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
   learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
   testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  mindMapHistories?: Prisma.MindMapHistoryUncheckedUpdateManyWithoutUserNestedInput
+  coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type UserCreateWithoutMindMapHistoriesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingCreateNestedManyWithoutHostInput
+  coursesTeaching?: Prisma.CourseCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardCreateNestedManyWithoutStudentInput
+}
+
+export type UserUncheckedCreateWithoutMindMapHistoriesInput = {
+  id?: string
+  name?: string | null
+  email: string
+  emailVerified?: Date | string | null
+  image?: string | null
+  password?: string | null
+  role?: $Enums.UserRole
+  level?: $Enums.StudentLevel
+  otp?: string | null
+  otp_expires_at?: Date | string | null
+  is_otp_verified?: boolean | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  Authenticator?: Prisma.AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedCreateNestedManyWithoutStudentInput
+  testSessions?: Prisma.PlacementTestUncheckedCreateNestedManyWithoutUserInput
+  meetings?: Prisma.MeetingUncheckedCreateNestedManyWithoutHostInput
+  coursesTeaching?: Prisma.CourseUncheckedCreateNestedManyWithoutTeacherInput
+  enrollments?: Prisma.EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+  progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutStudentInput
+  quizAttempts?: Prisma.QuizAttemptUncheckedCreateNestedManyWithoutStudentInput
+  leaderboard?: Prisma.LeaderboardUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type UserCreateOrConnectWithoutMindMapHistoriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMindMapHistoriesInput, Prisma.UserUncheckedCreateWithoutMindMapHistoriesInput>
+}
+
+export type UserUpsertWithoutMindMapHistoriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMindMapHistoriesInput, Prisma.UserUncheckedUpdateWithoutMindMapHistoriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMindMapHistoriesInput, Prisma.UserUncheckedCreateWithoutMindMapHistoriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMindMapHistoriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMindMapHistoriesInput, Prisma.UserUncheckedUpdateWithoutMindMapHistoriesInput>
+}
+
+export type UserUpdateWithoutMindMapHistoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUpdateManyWithoutHostNestedInput
+  coursesTeaching?: Prisma.CourseUpdateManyWithoutTeacherNestedInput
+  enrollments?: Prisma.EnrollmentUpdateManyWithoutStudentNestedInput
+  progress?: Prisma.ProgressUpdateManyWithoutStudentNestedInput
+  quizAttempts?: Prisma.QuizAttemptUpdateManyWithoutStudentNestedInput
+  leaderboard?: Prisma.LeaderboardUpdateManyWithoutStudentNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMindMapHistoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  level?: Prisma.EnumStudentLevelFieldUpdateOperationsInput | $Enums.StudentLevel
+  otp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_otp_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  Authenticator?: Prisma.AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  learningPathProgresses?: Prisma.LearningPathProgressUncheckedUpdateManyWithoutStudentNestedInput
+  testSessions?: Prisma.PlacementTestUncheckedUpdateManyWithoutUserNestedInput
+  meetings?: Prisma.MeetingUncheckedUpdateManyWithoutHostNestedInput
   coursesTeaching?: Prisma.CourseUncheckedUpdateManyWithoutTeacherNestedInput
   enrollments?: Prisma.EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutStudentNestedInput
@@ -2077,6 +2266,7 @@ export type UserCountOutputType = {
   learningPathProgresses: number
   testSessions: number
   meetings: number
+  mindMapHistories: number
   coursesTeaching: number
   enrollments: number
   progress: number
@@ -2091,6 +2281,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   learningPathProgresses?: boolean | UserCountOutputTypeCountLearningPathProgressesArgs
   testSessions?: boolean | UserCountOutputTypeCountTestSessionsArgs
   meetings?: boolean | UserCountOutputTypeCountMeetingsArgs
+  mindMapHistories?: boolean | UserCountOutputTypeCountMindMapHistoriesArgs
   coursesTeaching?: boolean | UserCountOutputTypeCountCoursesTeachingArgs
   enrollments?: boolean | UserCountOutputTypeCountEnrollmentsArgs
   progress?: boolean | UserCountOutputTypeCountProgressArgs
@@ -2153,6 +2344,13 @@ export type UserCountOutputTypeCountMeetingsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountMindMapHistoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MindMapHistoryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountCoursesTeachingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CourseWhereInput
 }
@@ -2206,6 +2404,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   learningPathProgresses?: boolean | Prisma.User$learningPathProgressesArgs<ExtArgs>
   testSessions?: boolean | Prisma.User$testSessionsArgs<ExtArgs>
   meetings?: boolean | Prisma.User$meetingsArgs<ExtArgs>
+  mindMapHistories?: boolean | Prisma.User$mindMapHistoriesArgs<ExtArgs>
   coursesTeaching?: boolean | Prisma.User$coursesTeachingArgs<ExtArgs>
   enrollments?: boolean | Prisma.User$enrollmentsArgs<ExtArgs>
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
@@ -2270,6 +2469,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   learningPathProgresses?: boolean | Prisma.User$learningPathProgressesArgs<ExtArgs>
   testSessions?: boolean | Prisma.User$testSessionsArgs<ExtArgs>
   meetings?: boolean | Prisma.User$meetingsArgs<ExtArgs>
+  mindMapHistories?: boolean | Prisma.User$mindMapHistoriesArgs<ExtArgs>
   coursesTeaching?: boolean | Prisma.User$coursesTeachingArgs<ExtArgs>
   enrollments?: boolean | Prisma.User$enrollmentsArgs<ExtArgs>
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
@@ -2289,6 +2489,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     learningPathProgresses: Prisma.$LearningPathProgressPayload<ExtArgs>[]
     testSessions: Prisma.$PlacementTestPayload<ExtArgs>[]
     meetings: Prisma.$MeetingPayload<ExtArgs>[]
+    mindMapHistories: Prisma.$MindMapHistoryPayload<ExtArgs>[]
     coursesTeaching: Prisma.$CoursePayload<ExtArgs>[]
     enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
     progress: Prisma.$ProgressPayload<ExtArgs>[]
@@ -2709,6 +2910,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   learningPathProgresses<T extends Prisma.User$learningPathProgressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$learningPathProgressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LearningPathProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   testSessions<T extends Prisma.User$testSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$testSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   meetings<T extends Prisma.User$meetingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$meetingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mindMapHistories<T extends Prisma.User$mindMapHistoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mindMapHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MindMapHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   coursesTeaching<T extends Prisma.User$coursesTeachingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$coursesTeachingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enrollments<T extends Prisma.User$enrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   progress<T extends Prisma.User$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3290,6 +3492,30 @@ export type User$meetingsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.MeetingScalarFieldEnum | Prisma.MeetingScalarFieldEnum[]
+}
+
+/**
+ * User.mindMapHistories
+ */
+export type User$mindMapHistoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MindMapHistory
+   */
+  select?: Prisma.MindMapHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MindMapHistory
+   */
+  omit?: Prisma.MindMapHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MindMapHistoryInclude<ExtArgs> | null
+  where?: Prisma.MindMapHistoryWhereInput
+  orderBy?: Prisma.MindMapHistoryOrderByWithRelationInput | Prisma.MindMapHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.MindMapHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MindMapHistoryScalarFieldEnum | Prisma.MindMapHistoryScalarFieldEnum[]
 }
 
 /**

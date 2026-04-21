@@ -15,6 +15,8 @@ import {
   askGeminiAboutLesson,
   generateLessonSummary,
 } from "@/actions/student/learning-accessible";
+import { Button } from "../ui/button";
+import { Eye, EyeOff } from "lucide-react";
 
 export type LessonWithProgress = {
   id: string;
@@ -26,6 +28,7 @@ export type LessonWithProgress = {
   order: number;
   progress: { completed: boolean }[];
 };
+type StudyMode = "normal" | "blind";
 
 type Message = {
   id: string;
@@ -79,6 +82,21 @@ export function AccessibleLearningClient({
   const [isAskMode, setIsAskMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [mode, setMode] = useState<StudyMode>("normal");
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    const savedMode = localStorage.getItem("study-mode") as StudyMode;
+    if (savedMode) setMode(savedMode);
+    setIsMounted(true);
+  }, []);
+
+  const toggleMode = () => {
+    const nextMode = mode === "normal" ? "blind" : "normal";
+    setMode(nextMode);
+    localStorage.setItem("study-mode", nextMode);
+  };
+
+  if (!isMounted) return null;
 
   const tts = useTTS(locale);
 
@@ -103,7 +121,7 @@ export function AccessibleLearningClient({
         const { summary } = await generateLessonSummary(
           content,
           activeLesson.title,
-          locale
+          locale,
         );
         setIsLoading(false);
         const msg: Message = {
@@ -126,7 +144,7 @@ export function AccessibleLearningClient({
           tts.speak(
             locale === "ar"
               ? `الانتقال إلى: ${next.title}`
-              : `Moving to: ${next.title}`
+              : `Moving to: ${next.title}`,
           );
           setActiveLesson(next);
           setMessages([]);
@@ -135,7 +153,7 @@ export function AccessibleLearningClient({
           tts.speak(
             locale === "ar"
               ? "وصلت إلى نهاية الدورة."
-              : "You have reached the end of the course."
+              : "You have reached the end of the course.",
           );
         }
         return;
@@ -150,7 +168,7 @@ export function AccessibleLearningClient({
           tts.speak(
             locale === "ar"
               ? `الرجوع إلى: ${prev.title}`
-              : `Going back to: ${prev.title}`
+              : `Going back to: ${prev.title}`,
           );
           setActiveLesson(prev);
           setMessages([]);
@@ -159,7 +177,7 @@ export function AccessibleLearningClient({
           tts.speak(
             locale === "ar"
               ? "هذا هو الدرس الأول."
-              : "This is the first lesson."
+              : "This is the first lesson.",
           );
         }
         return;
@@ -172,7 +190,7 @@ export function AccessibleLearningClient({
         tts.speak(
           locale === "ar"
             ? "تم تحديد الدرس كمكتمل."
-            : "Lesson marked as complete."
+            : "Lesson marked as complete.",
         );
         return;
       }
@@ -180,8 +198,7 @@ export function AccessibleLearningClient({
       // --- READ ---
       if (cmds.read.some((c) => lower.includes(c))) {
         if (!activeLesson) return;
-        const content =
-          activeLesson.content ?? activeLesson.transcript ?? "";
+        const content = activeLesson.content ?? activeLesson.transcript ?? "";
         if (content) {
           const intro =
             locale === "ar"
@@ -192,30 +209,25 @@ export function AccessibleLearningClient({
           tts.speak(
             locale === "ar"
               ? "لا يوجد محتوى نصي لهذا الدرس."
-              : "No text content available for this lesson."
+              : "No text content available for this lesson.",
           );
         }
         return;
       }
 
       // --- ASK mode or free question ---
-      if (
-        cmds.ask.some((c) => lower.includes(c)) ||
-        isAskMode
-      ) {
+      if (cmds.ask.some((c) => lower.includes(c)) || isAskMode) {
         setIsAskMode(false);
         if (!activeLesson) return;
 
         const question = cmds.ask.some((c) => lower.includes(c))
-          ? transcript.replace(/ask|question|اسأل|سؤال|عندي سؤال|لدي سؤال/gi, "").trim()
+          ? transcript
+              .replace(/ask|question|اسأل|سؤال|عندي سؤال|لدي سؤال/gi, "")
+              .trim()
           : transcript;
 
         if (!question) {
-          tts.speak(
-            locale === "ar"
-              ? "ما سؤالك؟"
-              : "What is your question?"
-          );
+          tts.speak(locale === "ar" ? "ما سؤالك؟" : "What is your question?");
           setIsAskMode(true);
           return;
         }
@@ -228,7 +240,9 @@ export function AccessibleLearningClient({
         };
         setMessages((prev) => [...prev, userMsg]);
         tts.speak(
-          locale === "ar" ? "جاري معالجة سؤالك..." : "Processing your question..."
+          locale === "ar"
+            ? "جاري معالجة سؤالك..."
+            : "Processing your question...",
         );
         setIsLoading(true);
 
@@ -237,7 +251,7 @@ export function AccessibleLearningClient({
           content,
           activeLesson.title,
           question,
-          locale
+          locale,
         );
         setIsLoading(false);
 
@@ -268,7 +282,7 @@ export function AccessibleLearningClient({
           content,
           activeLesson.title,
           transcript,
-          locale
+          locale,
         );
         setIsLoading(false);
         const aiMsg: Message = {
@@ -281,7 +295,7 @@ export function AccessibleLearningClient({
         tts.speakLong(answer);
       }
     },
-    [activeLesson, allLessons, course.id, isAskMode, locale, router, t, tts]
+    [activeLesson, allLessons, course.id, isAskMode, locale, router, t, tts],
   );
 
   const stt = useSTT({
@@ -291,7 +305,7 @@ export function AccessibleLearningClient({
       tts.speak(
         locale === "ar"
           ? "لم أستطع سماعك، يرجى المحاولة مرة أخرى."
-          : "I couldn't hear you, please try again."
+          : "I couldn't hear you, please try again.",
       );
     },
   });
@@ -316,7 +330,7 @@ export function AccessibleLearningClient({
     tts.speak(
       locale === "ar"
         ? `الانتقال إلى: ${lesson.title}`
-        : `Switching to: ${lesson.title}`
+        : `Switching to: ${lesson.title}`,
     );
   };
 
@@ -332,7 +346,19 @@ export function AccessibleLearningClient({
         onToggleSettings={() => setShowSettings((v) => !v)}
         locale={locale}
       />
-
+<Button
+          variant="outline"
+          size="sm"
+          onClick={toggleMode}
+          className="ml-auto flex gap-2"
+        >
+          {mode === "normal" ? (
+            <EyeOff className="w-4 h-4" />
+          ) : (
+            <Eye className="w-4 h-4" />
+          )}
+          {mode === "normal" ? t("blindMode") : t("normalMode")}
+        </Button>
       <div className="flex flex-1 overflow-hidden">
         {/* Lesson Sidebar */}
         <LessonNavigator

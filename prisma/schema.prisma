@@ -39,6 +39,7 @@ model User {
   learningPathProgresses LearningPathProgress[]
   testSessions           PlacementTest[]
   meetings               Meeting[]
+  mindMapHistories       MindMapHistory[]
 
   otp             String?
   otp_expires_at  DateTime?
@@ -335,4 +336,16 @@ model Meeting {
   isActive    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+
+model MindMapHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  input     String
+  summary   String
+  mindmap   Json
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 }

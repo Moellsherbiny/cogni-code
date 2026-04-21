@@ -41,6 +41,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     { title: sidebarItems("students"), url: "/teacher/students", icon: Users },
     { title: sidebarItems("generateQuiz"), url: "/teacher/quizzes/new", icon: ClipboardList },
     { title: sidebarItems("whiteboard"), url: "/whiteboard", icon: Brush },
+    { title: sidebarItems("mindMaps"), url: "/mind-maps", icon: Trophy },
   ] : [
     { title: t("dashboard"), url: "/student", icon: LayoutDashboard },
     { title: sidebarItems("myCourses"), url: "/student/courses", icon: GraduationCap },
@@ -48,6 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     { title: sidebarItems("whiteboard"), url: "/whiteboard", icon: Brush },
     { title: sidebarItems("myQuizzes"), url: "/student/quizzes", icon: ClipboardList },
     { title: sidebarItems("placementTest"), url: "/placement-test", icon: BookOpen },
+    { title: sidebarItems("mindMaps"), url: "/mind-maps", icon: Trophy },
   ];
 
   return (

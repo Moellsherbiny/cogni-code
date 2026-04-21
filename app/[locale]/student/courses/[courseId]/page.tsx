@@ -2,7 +2,6 @@ import { auth } from "@/auth";
 import { redirect, notFound } from "next/navigation";
 import { getStudyCourseDetail } from "@/actions/student/courses";
 import { StudyClient } from "@/components/course/study-client";
-import { prisma } from "@/lib/prisma";
 import { getStudentLevel } from "@/actions/student/level";
 
 export const dynamic = "force-dynamic";

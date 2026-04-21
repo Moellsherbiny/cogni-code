@@ -404,7 +404,8 @@ export const ModelName = {
   Leaderboard: 'Leaderboard',
   PlacementTest: 'PlacementTest',
   Summary: 'Summary',
-  Meeting: 'Meeting'
+  Meeting: 'Meeting',
+  MindMapHistory: 'MindMapHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "learningPath" | "learningPathCourse" | "learningPathProgress" | "course" | "module" | "lesson" | "progress" | "enrollment" | "quiz" | "question" | "option" | "quizAttempt" | "leaderboard" | "placementTest" | "summary" | "meeting"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "learningPath" | "learningPathCourse" | "learningPathProgress" | "course" | "module" | "lesson" | "progress" | "enrollment" | "quiz" | "question" | "option" | "quizAttempt" | "leaderboard" | "placementTest" | "summary" | "meeting" | "mindMapHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1978,6 +1979,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MindMapHistory: {
+      payload: Prisma.$MindMapHistoryPayload<ExtArgs>
+      fields: Prisma.MindMapHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MindMapHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MindMapHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.MindMapHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MindMapHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.MindMapHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.MindMapHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.MindMapHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MindMapHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.MindMapHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>
+        }
+        update: {
+          args: Prisma.MindMapHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.MindMapHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MindMapHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MindMapHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.MindMapHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MindMapHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.MindMapHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMindMapHistory>
+        }
+        groupBy: {
+          args: Prisma.MindMapHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MindMapHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MindMapHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MindMapHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2291,6 +2366,18 @@ export const MeetingScalarFieldEnum = {
 export type MeetingScalarFieldEnum = (typeof MeetingScalarFieldEnum)[keyof typeof MeetingScalarFieldEnum]
 
 
+export const MindMapHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  input: 'input',
+  summary: 'summary',
+  mindmap: 'mindmap',
+  createdAt: 'createdAt'
+} as const
+
+export type MindMapHistoryScalarFieldEnum = (typeof MindMapHistoryScalarFieldEnum)[keyof typeof MindMapHistoryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2599,6 +2686,7 @@ export type GlobalOmitConfig = {
   placementTest?: Prisma.PlacementTestOmit
   summary?: Prisma.SummaryOmit
   meeting?: Prisma.MeetingOmit
+  mindMapHistory?: Prisma.MindMapHistoryOmit
 }
 
 /* Types for Logging */

@@ -146,3 +146,8 @@ export type Summary = Prisma.SummaryModel
  * 
  */
 export type Meeting = Prisma.MeetingModel
+/**
+ * Model MindMapHistory
+ * 
+ */
+export type MindMapHistory = Prisma.MindMapHistoryModel

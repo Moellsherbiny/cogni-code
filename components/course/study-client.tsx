@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition, useCallback } from "react";
+import { useState, useTransition, useCallback, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import {
@@ -17,6 +17,8 @@ import {
   BookOpen,
   AlignLeft,
   Lock,
+  EyeOff,
+  Eye,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -36,7 +38,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { toggleLessonProgress } from "@/actions/student/courses";
-import type { StudyCourseDetail, LessonWithProgress } from "@/actions/student/courses";
+import type {
+  StudyCourseDetail,
+  LessonWithProgress,
+} from "@/actions/student/courses";
+type StudyMode = "normal" | "blind";
 
 // ─── Level hierarchy ──────────────────────────────────────────────────────────
 
@@ -83,7 +89,7 @@ function LessonTypeChip({ type }: { type: LessonWithProgress["type"] }) {
     <span
       className={cn(
         "inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full",
-        cls
+        cls,
       )}
     >
       <Icon className="w-3 h-3" />
@@ -97,9 +103,11 @@ function LessonTypeChip({ type }: { type: LessonWithProgress["type"] }) {
 function LevelBadge({ level, locked }: { level: string; locked?: boolean }) {
   const t = useTranslations("study");
   const map: Record<string, string> = {
-    BEGINNER:     "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
-    INTERMEDIATE: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300",
-    ADVANCED:     "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300",
+    BEGINNER:
+      "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+    INTERMEDIATE:
+      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300",
+    ADVANCED: "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300",
   };
   return (
     <span
@@ -107,7 +115,7 @@ function LevelBadge({ level, locked }: { level: string; locked?: boolean }) {
         "text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide inline-flex items-center gap-1",
         locked
           ? "bg-muted text-muted-foreground/60"
-          : (map[level] ?? "bg-muted text-muted-foreground")
+          : (map[level] ?? "bg-muted text-muted-foreground"),
       )}
     >
       {locked && <Lock className="w-2.5 h-2.5" />}
@@ -137,7 +145,7 @@ function LessonViewer({
     const next = !lesson.completed;
     onToggle(lesson.id, next);
     startTransition(() =>
-      toggleLessonProgress(studentId, lesson.id, next, courseId)
+      toggleLessonProgress(studentId, lesson.id, next, courseId),
     );
   };
 
@@ -160,7 +168,7 @@ function LessonViewer({
           className={cn(
             "gap-2 shrink-0",
             lesson.completed &&
-              "border-emerald-300 text-emerald-700 hover:bg-emerald-50 dark:border-emerald-700 dark:text-emerald-400"
+              "border-emerald-300 text-emerald-700 hover:bg-emerald-50 dark:border-emerald-700 dark:text-emerald-400",
           )}
         >
           {lesson.completed ? (
@@ -183,7 +191,6 @@ function LessonViewer({
             className="w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            
           />
         </div>
       )}
@@ -279,8 +286,8 @@ function Sidebar({
   studentLevel: string;
 }) {
   const t = useTranslations("study");
-  const [openModules, setOpenModules] = useState<Record<string, boolean>>(
-    () => Object.fromEntries(course.modules.map((m) => [m.id, true]))
+  const [openModules, setOpenModules] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(course.modules.map((m) => [m.id, true])),
   );
 
   const toggleModule = (id: string) =>
@@ -290,7 +297,9 @@ function Sidebar({
     <div className="flex flex-col h-full border-e border-border/60 bg-card/50">
       {/* Course header */}
       <div className="p-4 border-b border-border/50 shrink-0 space-y-3">
-        <div className={cn("flex items-center gap-2", isRtl && "flex-row-reverse")}>
+        <div
+          className={cn("flex items-center gap-2", isRtl && "flex-row-reverse")}
+        >
           <Avatar className="w-7 h-7 shrink-0">
             <AvatarImage src={course.teacherImage ?? undefined} />
             <AvatarFallback className="text-xs">
@@ -332,11 +341,21 @@ function Sidebar({
                       "flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg",
                       "hover:bg-muted/60 transition-colors text-start w-full",
                       locked && "opacity-60",
-                      isRtl && "flex-row-reverse"
+                      isRtl && "flex-row-reverse",
                     )}
                   >
-                    <div className={cn("flex flex-col gap-0.5 min-w-0", isRtl && "items-end")}>
-                      <div className={cn("flex items-center gap-1.5", isRtl && "flex-row-reverse")}>
+                    <div
+                      className={cn(
+                        "flex flex-col gap-0.5 min-w-0",
+                        isRtl && "items-end",
+                      )}
+                    >
+                      <div
+                        className={cn(
+                          "flex items-center gap-1.5",
+                          isRtl && "flex-row-reverse",
+                        )}
+                      >
                         {locked && (
                           <Lock className="w-3 h-3 text-muted-foreground shrink-0" />
                         )}
@@ -344,7 +363,12 @@ function Sidebar({
                           {mod.title}
                         </span>
                       </div>
-                      <div className={cn("flex items-center gap-1.5", isRtl && "flex-row-reverse")}>
+                      <div
+                        className={cn(
+                          "flex items-center gap-1.5",
+                          isRtl && "flex-row-reverse",
+                        )}
+                      >
                         <LevelBadge level={mod.level} locked={locked} />
                         {!locked && (
                           <span className="text-[10px] text-muted-foreground">
@@ -376,8 +400,8 @@ function Sidebar({
                               locked
                                 ? "opacity-50 cursor-not-allowed"
                                 : activeLessonId === lesson.id
-                                ? "bg-primary/10 text-primary font-medium"
-                                : "hover:bg-muted/60 text-foreground"
+                                  ? "bg-primary/10 text-primary font-medium"
+                                  : "hover:bg-muted/60 text-foreground",
                             )}
                           >
                             {locked ? (
@@ -418,15 +442,33 @@ function Sidebar({
 interface StudyClientProps {
   course: StudyCourseDetail;
   studentId: string;
-  studentLevel: string; // "BEGINNER" | "INTERMEDIATE" | "ADVANCED"
+  studentLevel: string;
 }
 
-export function StudyClient({ course, studentId, studentLevel }: StudyClientProps) {
+export function StudyClient({
+  course,
+  studentId,
+  studentLevel,
+}: StudyClientProps) {
   const t = useTranslations("study");
   const locale = useLocale();
   const router = useRouter();
   const isRtl = locale === "ar";
+  const [mode, setMode] = useState<StudyMode>("normal");
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    const savedMode = localStorage.getItem("study-mode") as StudyMode;
+    if (savedMode) setMode(savedMode);
+    setIsMounted(true);
+  }, []);
 
+  const toggleMode = () => {
+    const nextMode = mode === "normal" ? "blind" : "normal";
+    setMode(nextMode);
+    localStorage.setItem("study-mode", nextMode);
+  };
+
+  if (!isMounted) return null;
   // Optimistic local state for progress
   const [localCourse, setLocalCourse] = useState(course);
 
@@ -437,51 +479,50 @@ export function StudyClient({ course, studentId, studentLevel }: StudyClientProp
       if (!firstModule) return null;
       const firstLocked = isModuleLocked(firstModule.level, studentLevel);
       return firstLocked ? null : (firstModule.lessons[0] ?? null);
-    }
+    },
   );
-  const [activeLessonLocked, setActiveLessonLocked] = useState<string | null>(null); // holds moduleLevel when locked
+  const [activeLessonLocked, setActiveLessonLocked] = useState<string | null>(
+    null,
+  ); // holds moduleLevel when locked
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  const handleToggle = useCallback(
-    (lessonId: string, completed: boolean) => {
-      setLocalCourse((prev) => {
-        const modules = prev.modules.map((mod) => ({
-          ...mod,
-          lessons: mod.lessons.map((l) =>
-            l.id === lessonId ? { ...l, completed } : l
-          ),
-          completedLessons: mod.lessons.filter((l) =>
-            l.id === lessonId ? completed : l.completed
-          ).length,
-        }));
-        const totalLessons = modules.reduce((s, m) => s + m.totalLessons, 0);
-        const completedLessons = modules.reduce(
-          (s, m) => s + m.completedLessons,
-          0
-        );
-        return {
-          ...prev,
-          modules,
-          completedLessons,
-          progressPercent:
-            totalLessons === 0
-              ? 0
-              : Math.round((completedLessons / totalLessons) * 100),
-        };
-      });
-      setActiveLesson((prev) =>
-        prev?.id === lessonId ? { ...prev, completed } : prev
+  const handleToggle = useCallback((lessonId: string, completed: boolean) => {
+    setLocalCourse((prev) => {
+      const modules = prev.modules.map((mod) => ({
+        ...mod,
+        lessons: mod.lessons.map((l) =>
+          l.id === lessonId ? { ...l, completed } : l,
+        ),
+        completedLessons: mod.lessons.filter((l) =>
+          l.id === lessonId ? completed : l.completed,
+        ).length,
+      }));
+      const totalLessons = modules.reduce((s, m) => s + m.totalLessons, 0);
+      const completedLessons = modules.reduce(
+        (s, m) => s + m.completedLessons,
+        0,
       );
-    },
-    []
-  );
+      return {
+        ...prev,
+        modules,
+        completedLessons,
+        progressPercent:
+          totalLessons === 0
+            ? 0
+            : Math.round((completedLessons / totalLessons) * 100),
+      };
+    });
+    setActiveLesson((prev) =>
+      prev?.id === lessonId ? { ...prev, completed } : prev,
+    );
+  }, []);
 
   const handleSelectLesson = useCallback(
     (lesson: LessonWithProgress, locked: boolean) => {
       if (locked) {
         // Show the locked state in the main panel, find the module level
         const mod = localCourse.modules.find((m) =>
-          m.lessons.some((l) => l.id === lesson.id)
+          m.lessons.some((l) => l.id === lesson.id),
         );
         setActiveLessonLocked(mod?.level ?? "ADVANCED");
         setActiveLesson(null);
@@ -490,9 +531,11 @@ export function StudyClient({ course, studentId, studentLevel }: StudyClientProp
         setActiveLessonLocked(null);
       }
     },
-    [localCourse.modules]
+    [localCourse.modules],
   );
 
+  if (mode === "blind")
+    router.push(`/${locale}/student/courses/${course.id}/accessible-learning`);
   return (
     <div
       dir={isRtl ? "rtl" : "ltr"}
@@ -502,7 +545,7 @@ export function StudyClient({ course, studentId, studentLevel }: StudyClientProp
       <header
         className={cn(
           "flex items-center gap-3 px-4 py-2.5 border-b border-border/60 bg-card/80 backdrop-blur-sm shrink-0",
-          isRtl && "flex-row-reverse"
+          isRtl && "flex-row-reverse",
         )}
       >
         <Button
@@ -524,7 +567,19 @@ export function StudyClient({ course, studentId, studentLevel }: StudyClientProp
         <span className="text-sm font-semibold text-foreground truncate flex-1">
           {localCourse.title}
         </span>
-
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={toggleMode}
+          className="ml-auto flex gap-2"
+        >
+          {mode === "normal" ? (
+            <EyeOff className="w-4 h-4" />
+          ) : (
+            <Eye className="w-4 h-4" />
+          )}
+          {mode === "normal" ? t("blindMode") : t("normalMode")}
+        </Button>
         <div className="hidden sm:flex items-center gap-2 shrink-0">
           <Progress
             value={localCourse.progressPercent}
@@ -552,7 +607,7 @@ export function StudyClient({ course, studentId, studentLevel }: StudyClientProp
         <div
           className={cn(
             "w-72 shrink-0 transition-all duration-300 overflow-hidden",
-            sidebarOpen ? "w-72" : "w-0"
+            sidebarOpen ? "w-72" : "w-0",
           )}
         >
           <Sidebar

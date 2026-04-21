@@ -71,7 +71,8 @@ export const ModelName = {
   Leaderboard: 'Leaderboard',
   PlacementTest: 'PlacementTest',
   Summary: 'Summary',
-  Meeting: 'Meeting'
+  Meeting: 'Meeting',
+  MindMapHistory: 'MindMapHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -362,6 +363,18 @@ export const MeetingScalarFieldEnum = {
 } as const
 
 export type MeetingScalarFieldEnum = (typeof MeetingScalarFieldEnum)[keyof typeof MeetingScalarFieldEnum]
+
+
+export const MindMapHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  input: 'input',
+  summary: 'summary',
+  mindmap: 'mindmap',
+  createdAt: 'createdAt'
+} as const
+
+export type MindMapHistoryScalarFieldEnum = (typeof MindMapHistoryScalarFieldEnum)[keyof typeof MindMapHistoryScalarFieldEnum]
 
 
 export const SortOrder = {

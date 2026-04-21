@@ -271,9 +271,11 @@
     "status": "Status"
   },
   "Student": {
+
     "title": "Learning Dashboard",
     "myProgress": "My Progress",
     "enrolledCourses": "Enrolled Courses",
+    "liveMeetings": "Live Sessions",
     "currentLevel": "Current Level",
     "beginner": "Beginner",
     "intermediate": "Intermediate",
@@ -362,6 +364,7 @@
     "courses": "Courses",
     "myCourses": "My Courses",
     "quizzes": "Quizzes",
+    "mindMaps": "Mind Maps",
     "leaderboard": "Leaderboard",
     "settings": "Settings",
     "logout": "Logout",
@@ -690,5 +693,47 @@
     "loading": "Processing with Gemini...",
     "summary": "Summary",
     "mindMap": "Mind Map"
+  },
+"summarize": {
+    "brand": "Summarize AI",
+    "switchLanguage": "Switch to Arabic",
+    "toggleTheme": "Toggle theme",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode",
+    "badge": "AI-Powered",
+    "title": "Summarize any text, instantly.",
+    "description": "Paste your content below and get a concise, accurate summary in seconds.",
+    "inputLabel": "Your Text",
+    "words": "words",
+    "chars": "chars",
+    "placeholder": "Paste your article, report, essay, or any long-form text here…",
+    "minLengthHint": "Add a bit more text to continue",
+    "readyHint": "Ready to summarize",
+    "startHint": "Start by pasting your text above",
+    "generating": "Generating…",
+    "generate": "Generate Summary",
+    "footerNote": "Your text is processed securely and never stored."
+  },
+  "result": {
+    "pageTitle": "Summary Ready",
+    "pageSubtitle": "Here's your AI-generated summary",
+    "summaryLabel": "Summary",
+    "mindmapLabel": "Mind Map",
+    "downloadPdf": "Download PDF",
+    "downloading": "Preparing…",
+    "backLabel": "New Summary",
+    "readingTime": "min read",
+    "generatedOn": "Generated",
+    "notFound": "Summary not found",
+    "notFoundDesc": "This summary may have expired or the link is invalid.",
+    "historyTitle": "History",
+    "historyEmpty": "No summaries yet",
+    "historyEmptyDesc": "Summaries you generate will appear here automatically.",
+    "clearAll": "Clear all",
+    "clearConfirm": "Clear history?",
+    "clearConfirmDesc": "This will permanently delete all saved summaries from this device.",
+    "cancel": "Cancel",
+    "confirm": "Clear all",
+    "openResult": "Open"
   }
 }

@@ -25,6 +25,7 @@ export default async function DashboardLayout({
   if (session?.user?.role !== "STUDENT") redirect("/");
   const isTakePlacementTest = await isStudentTakePlacementTest({userId:session.user.id as string});
   if (!isTakePlacementTest) redirect("/placement-test");
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full" dir={isRtl ? "rtl" : "ltr"}>

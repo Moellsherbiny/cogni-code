@@ -1,62 +1,65 @@
-
 "use server";
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
-import { generateRoomName } from "@/lib/jitsi";
 
-export async function getMeetings() {
-  return prisma.meeting.findMany({
-    include: { host: { select: { name: true, image: true } } },
-    orderBy: { scheduledAt: "asc" },
-  });
-}
-
-export async function getMeeting(roomName: string) {
-  return prisma.meeting.findUnique({
-    where: { roomName },
-    include: { host: { select: { id: true, name: true, image: true } } },
-  });
-}
-
-export async function createMeeting(formData: {
+interface CreateMeetingInput {
   title: string;
-  description?: string;
+  courseId: string;
   scheduledAt: string;
-  duration: number;
-  courseId?: string;
-}) {
-  const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+}
 
-  const meeting = await prisma.meeting.create({
+export async function createMeetingAction(data: CreateMeetingInput) {
+  const session = await auth();
+  if (session?.user?.role !== "TEACHER") throw new Error("Unauthorized");
+
+  const title = data.title;
+  const courseId = data.courseId;
+  const scheduledAt = data.scheduledAt;
+
+  // Use a URL-safe room name + timestamp for uniqueness
+  const roomName = `${title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now()}`;
+
+  await prisma.meeting.create({
     data: {
-      title: formData.title,
-      description: formData.description ?? null,
-      roomName: generateRoomName(formData.title),
-      scheduledAt: new Date(formData.scheduledAt),
-      duration: formData.duration,
-      hostId: session.user.id,
-      courseId: formData.courseId ?? null,
+      title,
+      roomName,
+      scheduledAt: new Date(),
+      hostId: session.user.id!,
+      courseId: courseId || null,
+      isActive: true,
     },
   });
 
-  revalidatePath("/meetings");
-  return meeting;
+  revalidatePath("/teacher");
+  revalidatePath("/student");
+}
+export async function getActiveMeetings(courseId?: string) {
+  return await prisma.meeting.findMany({
+    where: {
+      courseId: courseId,
+      isActive: true,
+      // Optional: scheduledAt: { gte: new Date() }
+    },
+    include: {
+      host: { select: { name: true } }
+    },
+    orderBy: { scheduledAt: 'asc' }
+  });
 }
 
-export async function deleteMeeting(id: string) {
+export async function getMeetings() {
   const session = await auth();
   if (!session?.user) throw new Error("Unauthorized");
 
-  await prisma.meeting.delete({ where: { id, hostId: session.user.id } });
-  revalidatePath("/meetings");
+  return await prisma.meeting.findMany({ where: { hostId: session.user.id } });
 }
 
-export async function setMeetingActive(id: string, isActive: boolean) {
-  const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
-
-  await prisma.meeting.update({ where: { id }, data: { isActive } });
+export async function toggleMeetingStatus(id: string, active: boolean) {
+  await prisma.meeting.update({
+    where: { id },
+    data: { isActive: active },
+  });
+  revalidatePath("/teacher");
 }
