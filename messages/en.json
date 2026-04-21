@@ -62,7 +62,7 @@
       "title": "Create an account",
       "subtitle": "Join thousands of learners today — it's free.",
       "name": "Full Name",
-      "namePlaceholder": "Jane Smith",
+      "namePlaceholder": "First and last name",
       "email": "Email",
       "emailPlaceholder": "you@example.com",
       "password": "Password",

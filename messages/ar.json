@@ -62,7 +62,7 @@
       "title": "إنشاء حساب",
       "subtitle": "انضم إلى آلاف المتعلمين اليوم — مجاناً.",
       "name": "الاسم الكامل",
-      "namePlaceholder": "أحمد محمد",
+      "namePlaceholder": "الاسم الأول والاسم الأخير",
       "email": "البريد الإلكتروني",
       "emailPlaceholder": "example@domain.com",
       "password": "كلمة المرور",
