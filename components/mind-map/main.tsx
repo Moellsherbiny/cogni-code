@@ -1,42 +1,98 @@
-// components/mind-map/main.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
 import { Transformer } from "markmap-lib";
 import { Markmap } from "markmap-view";
-
-interface MindMapProps {
-  data: any;
-  // Add the ref prop here
-  svgRef?: React.RefObject<SVGSVGElement | null>;
+import "./map.css";
+interface MindMapNode {
+  title: string;
+  children?: MindMapNode[];
 }
 
-function toMarkdown(node: any, d = 1): string {
-  let md = `${"#".repeat(d)} ${node.title}\n`;
-  node.children?.forEach((c: any) => {
-    md += toMarkdown(c, d + 1);
+interface MindMapProps {
+  data: MindMapNode;
+  svgRef?: React.RefObject<SVGSVGElement | null>;
+  className?: string;
+}
+
+function toMarkdown(node: MindMapNode, depth = 1): string {
+  let md = `${"#".repeat(depth)} ${node.title}\n`;
+
+  node.children?.forEach((child) => {
+    md += toMarkdown(child, depth + 1);
   });
+
   return md;
 }
 
-export default function MindMap({ data, svgRef }: MindMapProps) {
-  // Use the passed ref or a local one if none provided
-  const internalRef = useRef<SVGSVGElement>(null);
-  const activeRef = svgRef || internalRef;
+export default function MindMap({
+  data,
+  svgRef,
+  className = "w-full h-137.5",
+}: MindMapProps) {
+  const localRef = useRef<SVGSVGElement>(null);
+  const activeRef = svgRef ?? localRef;
+
+  const markmapRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!activeRef.current) return;
-    activeRef.current.innerHTML = "";
+    const svg = activeRef.current;
+    if (!svg || !data) return;
 
-    const t = new Transformer();
-    const { root } = t.transform(toMarkdown(data));
+    svg.innerHTML = "";
 
-    setTimeout(() => {
-      if (activeRef.current) {
-        Markmap.create(activeRef.current, {}, root);
-      }
-    }, 200);
+    const transformer = new Transformer();
+    const { root } = transformer.transform(toMarkdown(data));
+
+    let frame = requestAnimationFrame(() => {
+      if (!svg) return;
+
+      markmapRef.current = Markmap.create(
+        svg,
+        {
+          autoFit: true,
+          zoom: true,
+          pan: true,
+          duration: 300,
+          maxWidth: 320,
+          spacingHorizontal: 80,
+          spacingVertical: 10,
+          paddingX: 16,
+        },
+        root
+      );
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      markmapRef.current?.fit?.();
+    });
+
+    resizeObserver.observe(svg);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+
+      try {
+        markmapRef.current?.destroy?.();
+      } catch {}
+
+      markmapRef.current = null;
+      svg.innerHTML = "";
+    };
   }, [data, activeRef]);
 
-  return <svg ref={activeRef} className="w-full h-125" />;
+  return (
+    <div className="w-full overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm">
+      <svg
+        ref={activeRef}
+        className={className}
+        style={{
+          width: "100%",
+          display: "block",
+          cursor: "grab",
+        }}
+      />
+    </div>
+  );
 }

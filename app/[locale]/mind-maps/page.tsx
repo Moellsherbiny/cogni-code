@@ -43,15 +43,10 @@ export default function SummarizePage() {
   const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
   const isReady = text.trim().length > 10;
 
-  const toggleLocale = () => {
-    const nextLocale = locale === "en" ? "ar" : "en";
-    router.push(pathname.replace(`/${locale}`, `/${nextLocale}`));
-  };
-
   const handleGenerate = () => {
     start(async () => {
       const id = await generateSummaryAction(text);
-      router.push(`/${locale}/result/${id}`);
+      router.push(`/${locale}/mind-maps/result/${id}`);
     });
   };
 

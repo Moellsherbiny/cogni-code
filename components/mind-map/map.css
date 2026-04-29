@@ -1,0 +1,58 @@
+/* ─────────────────────────────
+   Markmap Premium Theme
+───────────────────────────── */
+
+.markmap {
+  border-radius: 1rem;
+}
+
+/* Text */
+.markmap text {
+  fill: hsl(var(--foreground)) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.15px;
+  transition: fill 0.2s ease;
+}
+
+/* Links / Branches */
+.markmap path {
+  stroke: hsl(var(--primary)) !important;
+  stroke-width: 2px !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+/* Nodes */
+.markmap circle {
+  fill: hsl(var(--primary)) !important;
+  stroke: hsl(var(--background)) !important;
+  stroke-width: 2px;
+}
+
+/* Hover glow */
+.markmap g:hover text {
+  fill: hsl(var(--primary)) !important;
+}
+
+.markmap g:hover path {
+  opacity: 1;
+  stroke-width: 2.5px !important;
+}
+
+/* Dark mode refinement */
+.dark .markmap text {
+  fill: hsl(var(--foreground)) !important;
+}
+
+.dark .markmap path {
+  opacity: 0.95;
+}
+
+/* Smooth zoom / pan look */
+.markmap svg,
+.markmap {
+  transition: all 0.25s ease;
+}
