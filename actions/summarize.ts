@@ -1,65 +1,185 @@
 "use server";
+
 import { GoogleGenAI } from "@google/genai";
 import { prisma } from "@/lib/prisma";
-import {auth} from "@/auth"
-const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+import { auth } from "@/auth";
 
+const genAI = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+});
 
-async function callGemini(prompt: string) {
-  const response = await genAI.models.generateContent({
-    contents: [prompt],
-    model: "gemini-flash-latest",
-  });
-  return response.text || "";
+// ─────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────
+
+function getErrorMessage(error: unknown): string {
+  const message =
+    error instanceof Error
+      ? error.message
+      : "Unknown error";
+
+  // Rate limit / quota
+  if (
+    message.includes("429") ||
+    message.includes("RESOURCE_EXHAUSTED") ||
+    message.includes("quota")
+  ) {
+    return "AI service is busy right now. Please wait a minute and try again.";
+  }
+
+  // Auth
+  if (message.includes("Unauthorized")) {
+    return "You must sign in first.";
+  }
+
+  return "Something went wrong while generating content. Please try again.";
 }
 
-export async function generateSummaryAction(input: string) {
-  const user = await auth();
-  if (!user) {
-    throw new Error("Unauthorized");
+async function callGemini(prompt: string) {
+  try {
+    const response =
+      await genAI.models.generateContent({
+        model: "gemini-flash-latest",
+        contents: [prompt],
+      });
+
+    return response.text || "";
+  } catch (error) {
+    throw new Error(getErrorMessage(error));
   }
+}
 
-  const summary = await callGemini(`Summarize:\n${input}`);
+// ─────────────────────────────────────────────
+// Actions
+// ─────────────────────────────────────────────
 
-  const mindmapRaw = await callGemini(`
-Convert into JSON mindmap:
+export async function generateSummaryAction(
+  input: string
+) {
+  try {
+    const user = await auth();
+
+    if (!user) {
+      throw new Error("Unauthorized");
+    }
+
+    if (!input?.trim()) {
+      return {
+        success: false,
+        message: "Please enter text first.",
+      };
+    }
+
+    // Generate summary
+    const summary = await callGemini(
+      `Summarize this clearly:\n\n${input}`
+    );
+
+    // Generate mindmap
+    const mindmapRaw = await callGemini(`
+Convert this summary into valid JSON mindmap.
+
+Summary:
 ${summary}
 
-ONLY JSON:
+ONLY RETURN JSON:
+
 {
- "title": "",
- "children": []
-}`);
+  "title": "Main Topic",
+  "children": [
+    {
+      "title": "Child",
+      "children": []
+    }
+  ]
+}
+`);
 
-  let mindmap;
-  try {
-    mindmap = JSON.parse(mindmapRaw);
-  } catch {
-    mindmap = { title: "Error", children: [] };
+    let mindmap;
+
+    try {
+      mindmap = JSON.parse(mindmapRaw);
+    } catch {
+      mindmap = {
+        title: "Mind Map",
+        children: [],
+      };
+    }
+
+    // Save DB
+    const saved =
+      await prisma.mindMapHistory.create({
+        data: {
+          input,
+          summary,
+          mindmap,
+          userId: user.user.id,
+        },
+      });
+
+    return {
+      success: true,
+      id: saved.id,
+    };
+  } catch (error) {
+    console.error(
+      "generateSummaryAction error:",
+      error
+    );
+
+    return {
+      success: false,
+      message: getErrorMessage(error),
+    };
   }
-
-  const saved = await prisma.mindMapHistory.create({
-    data: { input, summary, mindmap, userId: user.user.id },
-  });
-
-  return saved.id;
 }
 
 export async function getHistoryAction() {
-  const user = await auth();
-  if (!user) {
-    throw new Error("Unauthorized");
+  try {
+    const user = await auth();
+
+    if (!user) {
+      return [];
+    }
+
+    return await prisma.mindMapHistory.findMany({
+      where: {
+        userId: user.user.id,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  } catch (error) {
+    console.error(
+      "getHistoryAction error:",
+      error
+    );
+
+    return [];
   }
-  return prisma.mindMapHistory.findMany({
-    orderBy: { createdAt: "desc" },
-    where: { userId: user.user.id },
-  });
 }
 
 export async function getSummaryById(id: string) {
-  const user = await auth();
-  if (!user) {
-    throw new Error("Unauthorized");
+  try {
+    const user = await auth();
+
+    if (!user) {
+      return null;
+    }
+
+    return await prisma.mindMapHistory.findFirst({
+      where: {
+        id,
+        userId: user.user.id,
+      },
+    });
+  } catch (error) {
+    console.error(
+      "getSummaryById error:",
+      error
+    );
+
+    return null;
   }
-  return prisma.mindMapHistory.findUnique({ where: { id, userId: user.user.id } });
 }
