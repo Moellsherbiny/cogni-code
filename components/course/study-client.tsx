@@ -19,10 +19,11 @@ import {
   Lock,
   EyeOff,
   Eye,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -42,6 +43,9 @@ import type {
   StudyCourseDetail,
   LessonWithProgress,
 } from "@/actions/student/courses";
+import LanguageSwitcher from "../layout/language-switcher";
+import { ModeToggle } from "../layout/theme-toggle";
+
 type StudyMode = "normal" | "blind";
 
 // ─── Level hierarchy ──────────────────────────────────────────────────────────
@@ -62,7 +66,7 @@ function getVideoId(url: string) {
   return match ? match[1] : null;
 }
 
-// ─── Lesson type icon / label ─────────────────────────────────────────────────
+// ─── Lesson type chip ─────────────────────────────────────────────────────────
 
 function LessonTypeChip({ type }: { type: LessonWithProgress["type"] }) {
   const t = useTranslations("study");
@@ -70,17 +74,17 @@ function LessonTypeChip({ type }: { type: LessonWithProgress["type"] }) {
     VIDEO: {
       icon: PlayCircle,
       label: t("videoLesson"),
-      cls: "text-blue-500 bg-blue-50 dark:bg-blue-950/40",
+      cls: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950/50 ring-1 ring-blue-200 dark:ring-blue-800/50",
     },
     TEXT: {
       icon: FileText,
       label: t("textLesson"),
-      cls: "text-violet-500 bg-violet-50 dark:bg-violet-950/40",
+      cls: "text-violet-600 bg-violet-50 dark:text-violet-400 dark:bg-violet-950/50 ring-1 ring-violet-200 dark:ring-violet-800/50",
     },
     MATERIAL: {
       icon: Paperclip,
       label: t("materialLesson"),
-      cls: "text-amber-500 bg-amber-50 dark:bg-amber-950/40",
+      cls: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/50 ring-1 ring-amber-200 dark:ring-amber-800/50",
     },
   } as const;
 
@@ -88,11 +92,11 @@ function LessonTypeChip({ type }: { type: LessonWithProgress["type"] }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full",
+        "inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full",
         cls,
       )}
     >
-      <Icon className="w-3 h-3" />
+      <Icon className="w-3 h-3 shrink-0" />
       {label}
     </span>
   );
@@ -104,17 +108,19 @@ function LevelBadge({ level, locked }: { level: string; locked?: boolean }) {
   const t = useTranslations("study");
   const map: Record<string, string> = {
     BEGINNER:
-      "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+      "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-400 dark:ring-emerald-800/50",
     INTERMEDIATE:
-      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300",
-    ADVANCED: "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300",
+      "bg-yellow-50 text-yellow-700 ring-1 ring-yellow-200 dark:bg-yellow-950/50 dark:text-yellow-400 dark:ring-yellow-800/50",
+    ADVANCED:
+      "bg-red-50 text-red-700 ring-1 ring-red-200 dark:bg-red-950/50 dark:text-red-400 dark:ring-red-800/50",
   };
+
   return (
     <span
       className={cn(
         "text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide inline-flex items-center gap-1",
         locked
-          ? "bg-muted text-muted-foreground/60"
+          ? "bg-muted/60 text-muted-foreground/40 ring-1 ring-border/40"
           : (map[level] ?? "bg-muted text-muted-foreground"),
       )}
     >
@@ -153,7 +159,7 @@ function LessonViewer({
     <div className="flex flex-col gap-6 p-6 sm:p-8 max-w-3xl mx-auto w-full">
       {/* Title row */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <LessonTypeChip type={lesson.type} />
           <h2 className="text-xl font-bold text-foreground leading-snug">
             {lesson.title}
@@ -166,9 +172,10 @@ function LessonViewer({
           disabled={isPending}
           onClick={handleToggle}
           className={cn(
-            "gap-2 shrink-0",
-            lesson.completed &&
-              "border-emerald-300 text-emerald-700 hover:bg-emerald-50 dark:border-emerald-700 dark:text-emerald-400",
+            "gap-2 shrink-0 transition-all duration-200",
+            lesson.completed
+              ? "border-emerald-300 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-400 dark:border-emerald-700/60 dark:text-emerald-400 dark:hover:bg-emerald-950/40"
+              : "shadow-sm",
           )}
         >
           {lesson.completed ? (
@@ -180,11 +187,11 @@ function LessonViewer({
         </Button>
       </div>
 
-      <Separator />
+      <Separator className="opacity-60" />
 
       {/* Video */}
       {lesson.type === "VIDEO" && lesson.videoUrl && (
-        <div className="rounded-xl overflow-hidden bg-black aspect-video shadow-md">
+        <div className="rounded-xl overflow-hidden bg-black aspect-video shadow-lg ring-1 ring-black/10 dark:ring-white/5">
           <iframe
             src={`https://www.youtube.com/embed/${getVideoId(lesson.videoUrl)}`}
             title={lesson.title}
@@ -198,7 +205,13 @@ function LessonViewer({
       {/* Text content */}
       {lesson.content && (
         <div
-          className="prose prose-sm dark:prose-invert max-w-none text-foreground leading-relaxed"
+          className={cn(
+            "prose prose-sm dark:prose-invert max-w-none text-foreground leading-relaxed",
+            "prose-headings:text-foreground prose-p:text-foreground/90",
+            "prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
+            "prose-code:text-foreground prose-code:bg-muted prose-code:rounded prose-code:px-1",
+            "prose-blockquote:border-l-primary/40 prose-blockquote:text-muted-foreground",
+          )}
           dangerouslySetInnerHTML={{ __html: lesson.content }}
         />
       )}
@@ -209,23 +222,30 @@ function LessonViewer({
           href={lesson.materialUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          className={cn(
+            "inline-flex items-center gap-2 text-sm font-medium text-primary",
+            "hover:underline transition-opacity hover:opacity-80",
+          )}
         >
-          <ExternalLink className="w-4 h-4" />
+          <ExternalLink className="w-4 h-4 shrink-0" />
           {t("downloadMaterial")}
         </a>
       )}
 
       {/* No content fallback */}
       {!lesson.content && !lesson.videoUrl && !lesson.materialUrl && (
-        <p className="text-muted-foreground text-sm">{t("noContent")}</p>
+        <p className="text-muted-foreground text-sm italic">{t("noContent")}</p>
       )}
 
       {/* Transcript collapsible */}
       {lesson.transcript && (
         <Collapsible open={showTranscript} onOpenChange={setShowTranscript}>
           <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="sm" className="gap-2 text-xs px-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 text-xs px-2 text-muted-foreground hover:text-foreground"
+            >
               <AlignLeft className="w-3.5 h-3.5" />
               {t("transcript")}
               {showTranscript ? (
@@ -236,7 +256,13 @@ function LessonViewer({
             </Button>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="mt-3 rounded-xl bg-muted/50 p-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap border border-border/50">
+            <div
+              className={cn(
+                "mt-3 rounded-xl p-4 text-sm leading-relaxed whitespace-pre-wrap",
+                "bg-muted/40 dark:bg-muted/20 border border-border/40",
+                "text-muted-foreground",
+              )}
+            >
               {lesson.transcript}
             </div>
           </CollapsibleContent>
@@ -251,15 +277,15 @@ function LessonViewer({
 function LockedModulePlaceholder({ moduleLevel }: { moduleLevel: string }) {
   const t = useTranslations("study");
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground px-6 text-center">
-      <div className="rounded-full bg-muted p-4">
-        <Lock className="w-8 h-8 opacity-40" />
+    <div className="flex flex-col items-center justify-center h-full gap-5 text-muted-foreground px-6 text-center">
+      <div className="rounded-2xl bg-muted/40 dark:bg-muted/20 p-5 ring-1 ring-border/40">
+        <Lock className="w-8 h-8 opacity-30" />
       </div>
-      <div className="space-y-1">
-        <p className="text-sm font-medium text-foreground">
+      <div className="space-y-1.5">
+        <p className="text-sm font-semibold text-foreground">
           {t("moduleLockedTitle", { defaultValue: "Module locked" })}
         </p>
-        <p className="text-xs text-muted-foreground max-w-xs">
+        <p className="text-xs text-muted-foreground max-w-xs leading-relaxed">
           {t("moduleLockedDesc", {
             level: moduleLevel,
             defaultValue: `This module requires ${moduleLevel} level or above.`,
@@ -294,15 +320,19 @@ function Sidebar({
     setOpenModules((prev) => ({ ...prev, [id]: !prev[id] }));
 
   return (
-    <div className="flex flex-col h-full border-e border-border/60 bg-card/50">
+    <div className="flex flex-col h-full bg-card/30 dark:bg-card/20">
       {/* Course header */}
-      <div className="p-4 border-b border-border/50 shrink-0 space-y-3">
+      <div className="p-4 border-b border-border/50 shrink-0 space-y-3.5">
+        {/* Teacher row */}
         <div
-          className={cn("flex items-center gap-2", isRtl && "flex-row-reverse")}
+          className={cn(
+            "flex items-center gap-2.5",
+            isRtl ? "flex-row-reverse" : "flex-row",
+          )}
         >
-          <Avatar className="w-7 h-7 shrink-0">
+          <Avatar className="w-7 h-7 shrink-0 ring-2 ring-border/40">
             <AvatarImage src={course.teacherImage ?? undefined} />
-            <AvatarFallback className="text-xs">
+            <AvatarFallback className="text-xs bg-muted font-medium">
               {course.teacherName.charAt(0)}
             </AvatarFallback>
           </Avatar>
@@ -311,21 +341,34 @@ function Sidebar({
           </span>
         </div>
 
-        <p className="text-sm font-semibold text-foreground leading-snug line-clamp-2">
+        <p
+          className={cn(
+            "text-sm font-semibold text-foreground leading-snug line-clamp-2",
+            isRtl ? "text-right" : "text-left",
+          )}
+        >
           {course.title}
         </p>
 
-        <div className="space-y-1">
-          <Progress value={course.progressPercent} className="h-1.5" />
-          <p className="text-[11px] text-muted-foreground">
+        <div className="space-y-1.5">
+          <Progress
+            value={course.progressPercent}
+            className="h-1.5 bg-muted/60 dark:bg-muted/30"
+          />
+          <p
+            className={cn(
+              "text-[11px] text-muted-foreground",
+              isRtl ? "text-right" : "text-left",
+            )}
+          >
             {t("progress", { percent: course.progressPercent })}
           </p>
         </div>
       </div>
 
       {/* Module list */}
-      <ScrollArea className="flex-1">
-        <div className="p-2 space-y-1">
+      <ScrollArea className="flex-1" dir={isRtl ? "rtl" : "ltr"}>
+        <div className="p-2 space-y-0.5">
           {course.modules.map((mod) => {
             const locked = isModuleLocked(mod.level, studentLevel);
 
@@ -335,25 +378,29 @@ function Sidebar({
                 open={openModules[mod.id]}
                 onOpenChange={() => toggleModule(mod.id)}
               >
-                <CollapsibleTrigger className="w-full">
+                <CollapsibleTrigger className="w-full group">
                   <div
+                  dir={isRtl ? "rtl" : "ltr"}
                     className={cn(
-                      "flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg",
-                      "hover:bg-muted/60 transition-colors text-start w-full",
-                      locked && "opacity-60",
-                      isRtl && "flex-row-reverse",
+                      "flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg w-full",
+                      "hover:bg-muted/50 dark:hover:bg-muted/30 transition-colors",
+                      isRtl
+                        ? "flex-row text-right"
+                        : "flex-row text-left",
+                      locked && "opacity-50",
                     )}
                   >
+                    {/* Left/Right content */}
                     <div
                       className={cn(
-                        "flex flex-col gap-0.5 min-w-0",
-                        isRtl && "items-end",
+                        "flex flex-col gap-1 min-w-0",
+                        isRtl ? "items-center" : "items-center",
                       )}
                     >
                       <div
                         className={cn(
-                          "flex items-center gap-1.5",
-                          isRtl && "flex-row-reverse",
+                          "flex items-center gap-1.5 min-w-0",
+                          isRtl ? "flex-row-reverse" : "flex-row",
                         )}
                       >
                         {locked && (
@@ -366,58 +413,75 @@ function Sidebar({
                       <div
                         className={cn(
                           "flex items-center gap-1.5",
-                          isRtl && "flex-row-reverse",
+                          isRtl ? "flex-row-reverse" : "flex-row",
                         )}
                       >
                         <LevelBadge level={mod.level} locked={locked} />
                         {!locked && (
-                          <span className="text-[10px] text-muted-foreground">
+                          <span className="text-[10px] text-muted-foreground tabular-nums">
                             {mod.completedLessons}/{mod.totalLessons}
                           </span>
                         )}
                       </div>
                     </div>
-                    {openModules[mod.id] ? (
-                      <ChevronUp className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
-                    )}
+
+                    {/* Chevron */}
+                    <span className="text-muted-foreground/60 shrink-0 transition-transform duration-200">
+                      {openModules[mod.id] ? (
+                        <ChevronUp className="w-3.5 h-3.5" />
+                      ) : (
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      )}
+                    </span>
                   </div>
                 </CollapsibleTrigger>
 
                 <CollapsibleContent>
-                  <div className="ms-2 mt-0.5 space-y-0.5">
+                  <div
+                    className={cn(
+                      "mt-0.5 space-y-0.5",
+                      isRtl ? "me-2" : "ms-2",
+                    )}
+                  >
                     {mod.lessons.map((lesson) => (
                       <Tooltip key={lesson.id} delayDuration={300}>
                         <TooltipTrigger asChild>
-                          <Button
+                          <button
+                            type="button"
                             onClick={() => onSelectLesson(lesson, locked)}
                             disabled={locked}
                             className={cn(
-                              "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-start",
-                              "transition-colors text-sm",
-                              isRtl && "flex-row-reverse",
+                              "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs",
+                              "transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                              isRtl
+                                ? "flex-row text-center"
+                                : "flex-row text-left",
                               locked
-                                ? "opacity-50 cursor-not-allowed"
+                                ? "opacity-40 cursor-not-allowed"
                                 : activeLessonId === lesson.id
-                                  ? "bg-primary/10 text-primary font-medium"
-                                  : "hover:bg-muted/60 text-foreground",
+                                  ? "bg-primary/10 dark:bg-primary/15 text-primary font-semibold"
+                                  : "hover:bg-muted/50 dark:hover:bg-muted/30 text-foreground/80 hover:text-foreground",
                             )}
                           >
-                            {locked ? (
-                              <Lock className="w-4 h-4 shrink-0 text-muted-foreground/50" />
-                            ) : lesson.completed ? (
-                              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
-                            ) : (
-                              <Circle className="w-4 h-4 shrink-0 text-muted-foreground/50" />
-                            )}
-                            <span className="truncate text-xs leading-snug">
+                            <span className="shrink-0">
+                              {locked ? (
+                                <Lock className="w-3.5 h-3.5 text-muted-foreground/40" />
+                              ) : lesson.completed ? (
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
+                              ) : (
+                                <Circle className="w-3.5 h-3.5 text-muted-foreground/40" />
+                              )}
+                            </span>
+                            <span className="truncate leading-snug">
                               {lesson.title}
                             </span>
-                          </Button>
+                          </button>
                         </TooltipTrigger>
                         {locked && (
-                          <TooltipContent side="right" className="text-xs">
+                          <TooltipContent
+                            side={isRtl ? "left" : "right"}
+                            className="text-xs"
+                          >
                             {t("requiresLevel", {
                               level: mod.level,
                               defaultValue: `Requires ${mod.level} level`,
@@ -454,12 +518,11 @@ export function StudyClient({
   const locale = useLocale();
   const router = useRouter();
   const isRtl = locale === "ar";
+
   const [mode, setMode] = useState<StudyMode>("normal");
-  const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     const savedMode = localStorage.getItem("study-mode") as StudyMode;
     if (savedMode) setMode(savedMode);
-    setIsMounted(true);
   }, []);
 
   const toggleMode = () => {
@@ -468,11 +531,8 @@ export function StudyClient({
     localStorage.setItem("study-mode", nextMode);
   };
 
-  if (!isMounted) return null;
-  // Optimistic local state for progress
   const [localCourse, setLocalCourse] = useState(course);
 
-  // Track active lesson + whether it's from a locked module
   const [activeLesson, setActiveLesson] = useState<LessonWithProgress | null>(
     () => {
       const firstModule = localCourse.modules[0];
@@ -483,7 +543,7 @@ export function StudyClient({
   );
   const [activeLessonLocked, setActiveLessonLocked] = useState<string | null>(
     null,
-  ); // holds moduleLevel when locked
+  );
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleToggle = useCallback((lessonId: string, completed: boolean) => {
@@ -520,7 +580,6 @@ export function StudyClient({
   const handleSelectLesson = useCallback(
     (lesson: LessonWithProgress, locked: boolean) => {
       if (locked) {
-        // Show the locked state in the main panel, find the module level
         const mod = localCourse.modules.find((m) =>
           m.lessons.some((l) => l.id === lesson.id),
         );
@@ -534,93 +593,147 @@ export function StudyClient({
     [localCourse.modules],
   );
 
-  if (mode === "blind")
-    router.push(`/${locale}/student/courses/${course.id}/accessible-learning`);
+  useEffect(() => {
+    if (mode === "blind") {
+      router.push(`/${locale}/courses/${course.id}/learn-accessible`);
+    }
+  }, [mode, router, locale, course.id]);
+
+  // Sidebar toggle icon: accounts for RTL direction
+  const SidebarToggleIcon = sidebarOpen
+    ? isRtl
+      ? PanelLeftOpen
+      : PanelLeftClose
+    : isRtl
+      ? PanelLeftClose
+      : PanelLeftOpen;
+
   return (
     <div
       dir={isRtl ? "rtl" : "ltr"}
       className="flex flex-col h-screen bg-background overflow-hidden"
     >
-      {/* Top bar */}
+      {/* ── Top bar ─────────────────────────────────────────── */}
       <header
         className={cn(
-          "flex items-center gap-3 px-4 py-2.5 border-b border-border/60 bg-card/80 backdrop-blur-sm shrink-0",
-          isRtl && "flex-row-reverse",
+          "flex items-center gap-3 px-4 py-2.5 shrink-0",
+          "border-b border-border/50",
+          "bg-card/70 dark:bg-card/50 backdrop-blur-md",
+          isRtl ? "flex-row-reverse" : "flex-row",
         )}
       >
+        {/* Back button */}
         <Button
           variant="ghost"
           size="sm"
-          className="gap-1.5 text-xs"
-          onClick={() => router.push("/courses")}
+          className={cn(
+            "gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors shrink-0",
+          )}
+          onClick={() => router.back()}
         >
           {isRtl ? (
             <ChevronRight className="w-4 h-4" />
           ) : (
             <ChevronLeft className="w-4 h-4" />
           )}
-          {t("backToCourses")}
+          <span className="hidden sm:inline">{t("backToCourses")}</span>
         </Button>
 
-        <Separator orientation="vertical" className="h-4" />
+        <Separator orientation="vertical"/>
+        {/* Sidebar toggle */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 shrink-0 text-muted-foreground hover:text-foreground"
+              onClick={() => setSidebarOpen((v) => !v)}
+            >
+              <SidebarToggleIcon className="w-4 h-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="text-xs">
+            {sidebarOpen
+              ? t("hideSidebar", { defaultValue: "Hide sidebar" })
+              : t("showSidebar", { defaultValue: "Show sidebar" })}
+          </TooltipContent>
+        </Tooltip>
+              <LanguageSwitcher />
+              <ModeToggle/>
 
-        <span className="text-sm font-semibold text-foreground truncate flex-1">
+        {/* Course title */}
+        <span
+          className={cn(
+            "text-sm font-semibold text-foreground truncate flex-1 min-w-0",
+            isRtl ? "text-right" : "text-left",
+          )}
+        >
           {localCourse.title}
         </span>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={toggleMode}
-          className="ml-auto flex gap-2"
-        >
-          {mode === "normal" ? (
-            <EyeOff className="w-4 h-4" />
-          ) : (
-            <Eye className="w-4 h-4" />
-          )}
-          {mode === "normal" ? t("blindMode") : t("normalMode")}
-        </Button>
-        <div className="hidden sm:flex items-center gap-2 shrink-0">
+
+        {/* Progress (desktop) */}
+        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
           <Progress
             value={localCourse.progressPercent}
-            className="w-24 h-1.5"
+            className="w-24 h-1.5 bg-muted/60 dark:bg-muted/30"
           />
-          <span className="text-xs text-muted-foreground tabular-nums">
+          <span className="text-xs text-muted-foreground tabular-nums w-8">
             {localCourse.progressPercent}%
           </span>
         </div>
 
-        {/* Sidebar toggle (mobile) */}
+        {/* Mode toggle */}
         <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 sm:hidden"
-          onClick={() => setSidebarOpen((v) => !v)}
+          variant="outline"
+          size="sm"
+          onClick={toggleMode}
+          className={cn(
+            "shrink-0 gap-2 text-xs",
+            "border-border/60 hover:bg-muted/60 dark:hover:bg-muted/30",
+            "transition-all duration-200",
+          )}
         >
-          <BookOpen className="w-4 h-4" />
+          {mode === "normal" ? (
+            <EyeOff className="w-3.5 h-3.5" />
+          ) : (
+            <Eye className="w-3.5 h-3.5" />
+          )}
+          <span className="hidden sm:inline">
+            {mode === "normal" ? t("blindMode") : t("normalMode")}
+          </span>
         </Button>
       </header>
 
-      {/* Main area */}
+      {/* ── Main area ────────────────────────────────────────── */}
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
         <div
           className={cn(
-            "w-72 shrink-0 transition-all duration-300 overflow-hidden",
+            "shrink-0 overflow-hidden transition-all duration-300 ease-in-out",
+            "border-border/50",
+            isRtl ? "border-l" : "border-r",
             sidebarOpen ? "w-72" : "w-0",
           )}
         >
-          <Sidebar
-            course={localCourse}
-            activeLessonId={activeLesson?.id ?? null}
-            onSelectLesson={handleSelectLesson}
-            isRtl={isRtl}
-            studentLevel={studentLevel}
-          />
+          {/* Always render so collapsibles don't reset */}
+          <div className="w-72 h-full">
+            <Sidebar
+              course={localCourse}
+              activeLessonId={activeLesson?.id ?? null}
+              onSelectLesson={handleSelectLesson}
+              isRtl={isRtl}
+              studentLevel={studentLevel}
+            />
+          </div>
         </div>
 
-        {/* Lesson / locked area */}
-        <main className="flex-1 overflow-auto">
+        {/* Lesson / locked / empty area */}
+        <main
+          className={cn(
+            "flex-1 overflow-auto",
+            "bg-background dark:bg-background",
+          )}
+        >
           {activeLessonLocked ? (
             <LockedModulePlaceholder moduleLevel={activeLessonLocked} />
           ) : activeLesson ? (
@@ -631,9 +744,13 @@ export function StudyClient({
               onToggle={handleToggle}
             />
           ) : (
-            <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground">
-              <BookOpen className="w-12 h-12 opacity-20" />
-              <p className="text-sm">{t("selectLesson")}</p>
+            <div className="flex flex-col items-center justify-center h-full gap-4 text-muted-foreground select-none">
+              <div className="rounded-2xl bg-muted/30 dark:bg-muted/20 p-5">
+                <BookOpen className="w-10 h-10 opacity-20" />
+              </div>
+              <p className="text-sm text-muted-foreground/60">
+                {t("selectLesson")}
+              </p>
             </div>
           )}
         </main>

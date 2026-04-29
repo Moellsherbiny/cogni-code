@@ -408,6 +408,11 @@
   "study": {
     "backToCourses": "My Courses",
     "modules": "Course Modules",
+    "blindMode": "Blind Mode",
+    
+    "normalMode": "Normal Mode",
+    "hideSidebar":"Hide Sidebar",
+    "showSidebar":"Show Sidebar",
     "lesson": "Lesson",
     "requiresLevel": "Requires level",
     "markComplete": "Mark as complete",
@@ -628,6 +633,8 @@
     }
   },
   "accessibleLearn": {
+    "normalMode": "Normal Mode",
+    "blindMode": "Blind Mode",
     "header": {
       "ariaLabel": "Accessible learning header",
       "backToCourse": "Back to course",

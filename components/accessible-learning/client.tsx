@@ -82,21 +82,7 @@ export function AccessibleLearningClient({
   const [isAskMode, setIsAskMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [mode, setMode] = useState<StudyMode>("normal");
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    const savedMode = localStorage.getItem("study-mode") as StudyMode;
-    if (savedMode) setMode(savedMode);
-    setIsMounted(true);
-  }, []);
 
-  const toggleMode = () => {
-    const nextMode = mode === "normal" ? "blind" : "normal";
-    setMode(nextMode);
-    localStorage.setItem("study-mode", nextMode);
-  };
-
-  if (!isMounted) return null;
 
   const tts = useTTS(locale);
 
@@ -340,25 +326,14 @@ export function AccessibleLearningClient({
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
       <AccessibleHeader
+        courseId={course.id}
         courseTitle={course.title}
         lessonTitle={activeLesson?.title ?? ""}
         ttsStatus={tts.status}
         onToggleSettings={() => setShowSettings((v) => !v)}
         locale={locale}
       />
-<Button
-          variant="outline"
-          size="sm"
-          onClick={toggleMode}
-          className="ml-auto flex gap-2"
-        >
-          {mode === "normal" ? (
-            <EyeOff className="w-4 h-4" />
-          ) : (
-            <Eye className="w-4 h-4" />
-          )}
-          {mode === "normal" ? t("blindMode") : t("normalMode")}
-        </Button>
+      
       <div className="flex flex-1 overflow-hidden">
         {/* Lesson Sidebar */}
         <LessonNavigator

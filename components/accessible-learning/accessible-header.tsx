@@ -1,31 +1,48 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Volume2, VolumeX, Settings, ArrowLeft, Eye } from "lucide-react";
+import { Volume2, VolumeX, Settings, ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { TTSStatus } from "@/hooks/use-tts";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   courseTitle: string;
   lessonTitle: string;
+  courseId: string;
   ttsStatus: TTSStatus;
   onToggleSettings: () => void;
   locale: string;
 };
+type StudyMode = "normal" | "blind";
 
 export function AccessibleHeader({
   courseTitle,
   lessonTitle,
+  courseId,
   ttsStatus,
   onToggleSettings,
   locale,
 }: Props) {
   const t = useTranslations("accessibleLearn");
   const isRTL = locale === "ar";
-
+    const [mode, setMode] = useState<StudyMode>();
+  const router = useRouter();
+  const toggleMode = () => {
+    const nextMode = mode === "normal" ? "blind" : "normal";
+    setMode(nextMode);
+    localStorage.setItem("study-mode", nextMode);
+  };
+  useEffect(() => {
+    setMode(localStorage.getItem("study-mode") as StudyMode);
+  if (mode === "normal") {
+    router.replace(`/${locale}/courses/${courseId}/study`);
+  }
+}, [mode, router, locale, courseId]);
   return (
     <header
       className="sticky top-0 z-20 bg-neutral-900/95 backdrop-blur-md border-b border-neutral-800 px-4 py-3"
@@ -46,7 +63,19 @@ export function AccessibleHeader({
               <ArrowLeft className={cn("w-5 h-5", isRTL && "rotate-180")} />
             </Link>
           </Button>
-
+          <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleMode}
+                  className="ml-auto flex gap-2"
+                >
+                  {mode === "normal" ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                  {mode === "normal" ? t("blindMode") : t("normalMode")}
+                </Button>
           <div className="min-w-0">
             <p className="text-xs text-neutral-500 truncate">{courseTitle}</p>
             <h1 className="text-sm font-semibold text-neutral-100 truncate">

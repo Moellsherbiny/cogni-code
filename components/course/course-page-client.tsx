@@ -503,7 +503,7 @@ export function CoursePage({ course, isRtl = false, isTeacher, studentId }: Cour
                   className="w-full h-12 rounded-xl font-bold text-base
                                           shadow-lg shadow-primary/10"
                 >
-                  <Link href={`/student/courses/${course.id}/`}>
+                  <Link href={`/courses/${course.id}/study`}>
                     <PlayCircle size={18} className="me-2" />
                     {t("startLearning")}
                   </Link>

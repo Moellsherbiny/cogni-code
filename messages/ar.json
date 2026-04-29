@@ -426,6 +426,10 @@
     "backToCourses": "دوراتي",
     "modules": "وحدات الدورة",
     "lesson": "الدرس",
+    "blindMode": "وضع الصوت",
+    "normalMode": "وضع عادي",
+    "hideSidebar": "اغلق الجانبية",
+    "showSidebar": "اظهار الجانبية",
     "requiresLevel": "يتطلب مستوى",
     "markComplete": "تحديد كمكتمل",
     "markIncomplete": "إلغاء الاكتمال",
@@ -645,6 +649,8 @@
     }
   },
   "accessibleLearn": {
+    "normalMode": "وضع عادي",
+    "blindMode": "وضع الصوت",
     "header": {
       "ariaLabel": "رأس وضع التعلم المُيسَّر",
       "backToCourse": "العودة إلى الدورة",
