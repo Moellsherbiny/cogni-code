@@ -1,6 +1,5 @@
 import Navbar from '@/components/layout/navbar'
 import { Whiteboard } from '@/components/whiteboard'
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
 export default function WhiteboardPage() {
   return (
