@@ -9,6 +9,7 @@ import {
   X,
   GripVertical,
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -17,20 +18,27 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
 import { cn } from "@/lib/utils";
-import "./whiteboard.css"
-const Tldraw = dynamic(async () => (await import("tldraw")).Tldraw, {
-  ssr: false,
-  loading: () => <WhiteboardSkeleton />,
-});
 
-import "tldraw/tldraw.css";
+const Excalidraw = dynamic(
+  async () =>
+    (await import("@excalidraw/excalidraw")).Excalidraw,
+  {
+    ssr: false,
+    loading: () => <WhiteboardSkeleton />,
+  }
+);
 
-// ─── Skeleton ────────────────────────────────────────────────────────────────
+import "@excalidraw/excalidraw/index.css";
+
+// ─────────────────────────────────────────────
+// Skeleton
+// ─────────────────────────────────────────────
 
 function WhiteboardSkeleton() {
   return (
-    <div className="w-full h-full min-h-100 bg-muted/50 animate-pulse rounded-xl flex items-center justify-center">
+    <div className="w-full h-full min-h-125 bg-muted/50 animate-pulse rounded-xl flex items-center justify-center">
       <div className="flex flex-col items-center gap-3 text-muted-foreground">
         <PenLine className="w-8 h-8 animate-bounce opacity-40" />
         <span className="text-sm font-medium tracking-wide opacity-60">
@@ -41,26 +49,23 @@ function WhiteboardSkeleton() {
   );
 }
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────────
 
 export interface WhiteboardProps {
-  /** Extra class names applied to the root wrapper */
   className?: string;
-  /** Title shown in the header */
   title?: string;
-  /** Minimum height when not in focus mode (Tailwind class, e.g. "min-h-[500px]") */
   minHeight?: string;
-  /** Show / hide the focus-mode toggle button */
   showFocusToggle?: boolean;
-  /** Callback fired when focus mode changes */
   onFocusModeChange?: (active: boolean) => void;
-  /** Additional toolbar actions rendered next to the built-in buttons */
   toolbarActions?: React.ReactNode;
-  /** tldraw className override */
   canvasClassName?: string;
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────
+// Component
+// ─────────────────────────────────────────────
 
 export function Whiteboard({
   className,
@@ -72,13 +77,15 @@ export function Whiteboard({
   canvasClassName,
 }: WhiteboardProps) {
   const { resolvedTheme } = useTheme();
+
   const [mounted, setMounted] = useState(false);
   const [isFocusMode, setIsFocusMode] = useState(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   const isDark = resolvedTheme === "dark";
 
-  // ── Focus mode ──────────────────────────────────────────────────────────────
+  // Focus mode
   const toggleFocusMode = useCallback(
     (next?: boolean) => {
       setIsFocusMode((prev) => {
@@ -90,18 +97,23 @@ export function Whiteboard({
     [onFocusModeChange]
   );
 
-  // ── Keyboard shortcut ───────────────────────────────────────────────────────
+  // Esc shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isFocusMode) toggleFocusMode(false);
+      if (e.key === "Escape" && isFocusMode) {
+        toggleFocusMode(false);
+      }
     };
+
     window.addEventListener("keydown", handleKeyDown);
+
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isFocusMode, toggleFocusMode]);
 
-  // ── Scroll lock in focus mode ───────────────────────────────────────────────
+  // Scroll lock
   useEffect(() => {
     document.body.style.overflow = isFocusMode ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -111,42 +123,47 @@ export function Whiteboard({
     setMounted(true);
   }, []);
 
-  // ── Canvas renderer ─────────────────────────────────────────────────────────
+  // Canvas
   const renderCanvas = () => (
     <div
       className={cn(
         "absolute inset-0 overflow-hidden rounded-xl border border-border/60 bg-card shadow-inner",
-        "[&_.tl-container]:rounded-xl!",
-        "[&_.tl-background]:rounded-xl",
         canvasClassName
       )}
     >
       {mounted ? (
-        <Tldraw inferDarkMode={isDark} className="w-full h-full" />
+        <Excalidraw
+          theme={isDark ? "dark" : "light"}
+        />
       ) : (
         <WhiteboardSkeleton />
       )}
     </div>
   );
 
-  // ─── Focus-mode overlay ─────────────────────────────────────────────────────
+  // Focus mode
   if (isFocusMode) {
     return (
       <div className="fixed inset-0 z-9999 flex flex-col bg-background/95 backdrop-blur-sm p-3 gap-3">
-        {/* Slim top bar */}
         <div className="flex items-center justify-between px-2 py-1 shrink-0">
           <div className="flex items-center gap-2">
             <GripVertical className="w-4 h-4 text-muted-foreground" />
+
             <span className="text-sm font-semibold tracking-tight">
               {title}
             </span>
-            <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+
+            <Badge
+              variant="secondary"
+              className="text-[10px] px-1.5 py-0"
+            >
               Focus
             </Badge>
           </div>
 
           <div className="flex items-center gap-1.5">
             {toolbarActions}
+
             <TooltipProvider delayDuration={300}>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -157,26 +174,25 @@ export function Whiteboard({
                     onClick={() => toggleFocusMode(false)}
                   >
                     <X className="w-4 h-4" />
-                    <span className="sr-only">Exit focus mode</span>
                   </Button>
                 </TooltipTrigger>
+
                 <TooltipContent side="left">
-                  Exit focus mode <kbd className="ml-1 opacity-60">Esc</kbd>
+                  Exit focus mode
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
         </div>
 
-        {/* Canvas fills remaining focus-mode space */}
-        <div className="relative flex-1" style={{ minHeight: 0 }}>
+        <div className="relative flex-1 min-h-0">
           {renderCanvas()}
         </div>
       </div>
     );
   }
 
-  // ─── Normal card ────────────────────────────────────────────────────────────
+  // Normal mode
   return (
     <div
       ref={containerRef}
@@ -190,6 +206,7 @@ export function Whiteboard({
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/50 bg-muted/30 shrink-0">
         <div className="flex items-center gap-2">
           <PenLine className="w-4 h-4 text-muted-foreground" />
+
           <span className="text-sm font-semibold tracking-tight text-foreground">
             {title}
           </span>
@@ -205,38 +222,27 @@ export function Whiteboard({
                   <Button
                     variant="outline"
                     size="sm"
-                    className={cn(
-                      "h-7 gap-1.5 text-xs font-medium transition-colors",
-                      "hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                    )}
+                    className="h-7 gap-1.5 text-xs font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary"
                     onClick={() => toggleFocusMode()}
                   >
                     <Maximize2 className="w-3.5 h-3.5" />
                     Focus
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Expand to full screen</TooltipContent>
+
+                <TooltipContent>
+                  Expand to full screen
+                </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           )}
         </div>
       </div>
 
-      {/* Canvas — grows to fill whatever height the parent gives */}
-      <div className="relative flex-1 p-3" style={{ minHeight: 0 }}>
-        <div
-          className={cn(
-            "absolute inset-3 overflow-hidden rounded-xl border border-border/60 bg-card shadow-inner",
-            "[&_.tl-container]:rounded-xl!",
-            "[&_.tl-background]:rounded-xl",
-            canvasClassName
-          )}
-        >
-          {mounted ? (
-            <Tldraw inferDarkMode={isDark} className="w-full h-full" />
-          ) : (
-            <WhiteboardSkeleton />
-          )}
+      {/* Canvas */}
+      <div className="relative flex-1 p-3 min-h-0">
+        <div className="absolute inset-3">
+          {renderCanvas()}
         </div>
       </div>
     </div>
