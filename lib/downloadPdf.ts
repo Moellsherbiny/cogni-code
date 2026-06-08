@@ -57,7 +57,8 @@ export const downloadSummaryPdf = async ({
     pdf.save(`${title.replace(/[^\w\s]/gi, "")}.pdf`);
 
   } catch (error) {
-    console.error("PDF Generation failed:", error);
-    // You could add a toast notification here to tell the user it failed
-  }
+  console.log("ERROR TYPE:", typeof error);
+  console.dir(error, { depth: null });
+  throw error;
+}
 };

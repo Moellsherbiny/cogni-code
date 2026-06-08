@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         </div>
 
       <div className="h-125">
-        <MindMap data={data.mindmap} />
+        <MindMap data={data.mindmap as any}  />
       </div>
     </div>
   );

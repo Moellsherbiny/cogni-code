@@ -76,15 +76,7 @@ export default function CogniCodeLanding() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           {/* Hero Content */}
           <div className="space-y-8 text-center lg:text-start">
-            <Badge
-              variant="secondary"
-              className="py-1.5 px-4 bg-primary/10 text-primary border-primary/20 gap-2 animate-in fade-in slide-in-from-bottom-2"
-            >
-              <Sparkles size={14} />
-              <span className="text-xs font-bold uppercase tracking-wider">
-                {t("badge")}
-              </span>
-            </Badge>
+          
 
             <h1
               className={cn(

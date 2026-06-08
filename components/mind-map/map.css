@@ -1,58 +1,114 @@
-/* ─────────────────────────────
-   Markmap Premium Theme
-───────────────────────────── */
-
-.markmap {
-  border-radius: 1rem;
+.tree,
+.tree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-/* Text */
-.markmap text {
-  fill: hsl(var(--foreground)) !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.15px;
-  transition: fill 0.2s ease;
+.tree ul {
+  position: relative;
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
 }
 
-/* Links / Branches */
-.markmap path {
-  stroke: hsl(var(--primary)) !important;
-  stroke-width: 2px !important;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.9;
-  transition: all 0.2s ease;
+.tree li {
+  position: relative;
+  text-align: center;
+  padding: 0 12px;
 }
 
-/* Nodes */
-.markmap circle {
-  fill: hsl(var(--primary)) !important;
-  stroke: hsl(var(--background)) !important;
-  stroke-width: 2px;
+/* horizontal line */
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 40px;
+  border-top: 2px solid hsl(var(--border));
 }
 
-/* Hover glow */
-.markmap g:hover text {
-  fill: hsl(var(--primary)) !important;
+/* left branch */
+.tree li::before {
+  right: 50%;
 }
 
-.markmap g:hover path {
-  opacity: 1;
-  stroke-width: 2.5px !important;
+/* right branch */
+.tree li::after {
+  left: 50%;
 }
 
-/* Dark mode refinement */
-.dark .markmap text {
-  fill: hsl(var(--foreground)) !important;
+/* remove connectors */
+.tree li:only-child::before,
+.tree li:only-child::after {
+  display: none;
 }
 
-.dark .markmap path {
-  opacity: 0.95;
+.tree li:first-child::before {
+  display: none;
 }
 
-/* Smooth zoom / pan look */
-.markmap svg,
-.markmap {
-  transition: all 0.25s ease;
+.tree li:last-child::after {
+  display: none;
+}
+
+/* vertical connector */
+.tree li > ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 40px;
+  background: hsl(var(--border));
+  transform: translateX(-50%);
+}
+
+/* smooth */
+.tree li > div {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* dark mode connector */
+.dark .tree li::before,
+.dark .tree li::after {
+  border-top-color: rgb(71 85 105);
+}
+
+.dark .tree li > ul::before {
+  background: rgb(71 85 105);
+}
+
+/* print */
+@media print {
+  .mindmap-container {
+    overflow: visible !important;
+  }
+
+  .tree li > div {
+    break-inside: avoid;
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .tree ul {
+    padding-top: 24px;
+  }
+
+  .tree li {
+    padding: 0 6px;
+  }
+
+  .tree li::before,
+  .tree li::after {
+    height: 24px;
+  }
+
+  .tree li > ul::before {
+    height: 24px;
+  }
 }
