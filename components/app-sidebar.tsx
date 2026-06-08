@@ -7,6 +7,7 @@ import {
   BookOpen, LayoutDashboard, Users, Settings, 
   GraduationCap, ClipboardList, Trophy, LogOut,
   Brush, 
+  FileCode
 } from "lucide-react";
 
 import {
@@ -25,6 +26,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
   const t = useTranslations("Common");
@@ -42,6 +44,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     { title: sidebarItems("generateQuiz"), url: "/teacher/quizzes/new", icon: ClipboardList },
     { title: sidebarItems("whiteboard"), url: "/whiteboard", icon: Brush },
     { title: sidebarItems("mindMaps"), url: "/mind-maps", icon: Trophy },
+    { title: sidebarItems("playground"), url: "/code-editor", icon: FileCode },
   ] : [
     { title: t("dashboard"), url: "/student", icon: LayoutDashboard },
     { title: sidebarItems("myCourses"), url: "/student/courses", icon: GraduationCap },
@@ -50,6 +53,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     { title: sidebarItems("myQuizzes"), url: "/student/quizzes", icon: ClipboardList },
     { title: sidebarItems("placementTest"), url: "/placement-test", icon: BookOpen },
     { title: sidebarItems("mindMaps"), url: "/mind-maps", icon: Trophy },
+    { title: sidebarItems("playground"), url: "/code-editor", icon: FileCode },
+
   ];
 
   return (

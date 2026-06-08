@@ -1,3 +1,16 @@
+allowBuilds:
+  '@google/genai': true
+  '@parcel/watcher': false
+  '@prisma/engines': true
+  '@swc/core': true
+  bcrypt: true
+  core-js: false
+  msw: true
+  prisma: true
+  protobufjs: false
+  puppeteer: false
+  sharp: false
+  unrs-resolver: false
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
