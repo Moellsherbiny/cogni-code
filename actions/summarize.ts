@@ -13,10 +13,7 @@ const genAI = new GoogleGenAI({
 // ─────────────────────────────────────────────
 
 function getErrorMessage(error: unknown): string {
-  const message =
-    error instanceof Error
-      ? error.message
-      : "Unknown error";
+  const message = error instanceof Error ? error.message : "Unknown error";
 
   // Rate limit / quota
   if (
@@ -37,14 +34,14 @@ function getErrorMessage(error: unknown): string {
 
 async function callGemini(prompt: string) {
   try {
-    const response =
-      await genAI.models.generateContent({
-        model: "gemini-flash-latest",
-        contents: [prompt],
-      });
+    const interaction = await genAI.interactions.create({
+      model: "gemini-3.1-flash-lite",
+      input: prompt,
+    });
 
-    return response.text || "";
+    return interaction.output_text || "";
   } catch (error) {
+    console.log(error);
     throw new Error(getErrorMessage(error));
   }
 }
@@ -53,9 +50,7 @@ async function callGemini(prompt: string) {
 // Actions
 // ─────────────────────────────────────────────
 
-export async function generateSummaryAction(
-  input: string
-) {
+export async function generateSummaryAction(input: string) {
   try {
     const user = await auth();
 
@@ -71,9 +66,7 @@ export async function generateSummaryAction(
     }
 
     // Generate summary
-    const summary = await callGemini(
-      `Summarize this clearly:\n\n${input}`
-    );
+    const summary = await callGemini(`Summarize this clearly:\n\n${input}`);
 
     // Generate mindmap
     const mindmapRaw = await callGemini(`
@@ -107,25 +100,21 @@ ONLY RETURN JSON:
     }
 
     // Save DB
-    const saved =
-      await prisma.mindMapHistory.create({
-        data: {
-          input,
-          summary,
-          mindmap,
-          userId: user.user.id,
-        },
-      });
+    const saved = await prisma.mindMapHistory.create({
+      data: {
+        input,
+        summary,
+        mindmap,
+        userId: user.user.id,
+      },
+    });
 
     return {
       success: true,
       id: saved.id,
     };
   } catch (error) {
-    console.error(
-      "generateSummaryAction error:",
-      error
-    );
+    console.error("generateSummaryAction error:", error);
 
     return {
       success: false,
@@ -151,10 +140,7 @@ export async function getHistoryAction() {
       },
     });
   } catch (error) {
-    console.error(
-      "getHistoryAction error:",
-      error
-    );
+    console.error("getHistoryAction error:", error);
 
     return [];
   }
@@ -175,10 +161,7 @@ export async function getSummaryById(id: string) {
       },
     });
   } catch (error) {
-    console.error(
-      "getSummaryById error:",
-      error
-    );
+    console.error("getSummaryById error:", error);
 
     return null;
   }

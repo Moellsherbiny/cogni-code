@@ -66,13 +66,14 @@ Instructions:
 `.trim();
 
   try {
-    const result = await genAI.models.generateContent(
-        {
-            model: "gemini-flash-latest",
-            contents: prompt
-        }
-    );
-    return { answer: result.text?.trim() || "" };
+    const interaction = await genAI.interactions.create({
+      model: "gemini-3.1-flash-lite",
+      input: prompt,
+    });
+
+    return {
+      answer: interaction.output_text?.trim() || "",
+    };
   } catch {
     return {
       answer:
@@ -91,7 +92,6 @@ export async function generateLessonSummary(
   const session = await auth();
   if (!session?.user?.id) throw new Error("Unauthorized");
 
-
   const langInstruction =
     locale === "ar" ? "أجب باللغة العربية فقط." : "Respond in English only.";
 
@@ -106,11 +106,14 @@ LESSON CONTENT: ${lessonContent.slice(0, 3000)}
 `.trim();
 
   try {
-    const result = await genAI.models.generateContent({
-        model: "gemini-flash-latest",
-        contents:prompt
-    });
-    return { summary: result.text?.trim() || "" };
+    const interaction = await genAI.interactions.create({
+  model: "gemini-3.1-flash-lite",
+  input: prompt,
+});
+
+return {
+  summary: interaction.output_text?.trim() || "",
+};
   } catch {
     return {
       summary:
