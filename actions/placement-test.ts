@@ -475,11 +475,12 @@ Provide a warm, encouraging, personalized feedback message (3-4 sentences) that:
 Keep it concise, friendly, and professional. Do not use markdown, just plain text.
     `.trim();
 
-    const result = await genAI.models.generateContent({
-      model: "gemini-flash-latest",
-      contents: prompt,
+    const interaction = await genAI.interactions.create({
+      model: "gemini-3.1-flash-lite",
+      input: prompt,
     });
-    aiFeedback = result.text?.trim() || "";
+
+    aiFeedback = interaction.output_text?.trim() || "";
   } catch {
     aiFeedback =
       "Great effort completing the placement test! Based on your results, we've identified the best starting point for your learning journey. Keep up the great work and stay consistent in your studies.";
